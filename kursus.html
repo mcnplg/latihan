@@ -1,0 +1,1031 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kursus - Belajar Coding & AI | TechEdu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        line-height: 1.6;
+        color: #2d2d2d;
+        background: #f9f9ff;
+      }
+
+      .container {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 0 30px;
+      }
+
+      /* Header - SAMA DENGAN HOMEPAGE */
+      .header {
+        background: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 30px;
+        max-width: 1300px;
+        margin: 0 auto;
+      }
+
+      .logo {
+        font-size: 28px;
+        font-weight: 800;
+        color: #5c2d91;
+        text-decoration: none;
+      }
+
+      .logo span {
+        color: #00adbc;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 30px;
+        list-style: none;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: #4a4a4a;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: #5c2d91;
+      }
+
+      .btn-login {
+        background: transparent;
+        border: 2px solid #5c2d91;
+        color: #5c2d91;
+        padding: 8px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .btn-login:hover {
+        background: #5c2d91;
+        color: white;
+      }
+
+      .btn-signup {
+        background: #5c2d91;
+        border: none;
+        color: white;
+        padding: 8px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .btn-signup:hover {
+        background: #7b46b3;
+      }
+
+      /* Page Header */
+      .page-header {
+        background: linear-gradient(135deg, #5c2d91 0%, #3a1c5c 100%);
+        color: white;
+        padding: 60px 0 40px;
+        text-align: center;
+      }
+
+      .page-header h1 {
+        font-size: 48px;
+        margin-bottom: 15px;
+      }
+
+      .page-header p {
+        font-size: 18px;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      /* Filter Section */
+      .filter-section {
+        background: white;
+        padding: 30px 0;
+        border-bottom: 1px solid #e0e0e0;
+        position: sticky;
+        top: 80px;
+        z-index: 99;
+      }
+
+      .filter-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .filter-tabs {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+
+      .filter-btn {
+        background: #f0f0f0;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 30px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s;
+        color: #666;
+      }
+
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: #5c2d91;
+        color: white;
+      }
+
+      .search-box {
+        display: flex;
+        align-items: center;
+        background: #f0f0f0;
+        border-radius: 40px;
+        padding: 8px 20px;
+      }
+
+      .search-box i {
+        color: #999;
+      }
+
+      .search-box input {
+        border: none;
+        background: none;
+        padding: 8px 12px;
+        font-size: 14px;
+        width: 250px;
+        outline: none;
+      }
+
+      /* Stats Bar */
+      .stats-bar {
+        background: white;
+        padding: 15px 0;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .stats-bar-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .course-count {
+        color: #666;
+        font-size: 14px;
+      }
+
+      .sort-select {
+        padding: 8px 12px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 14px;
+        background: white;
+        cursor: pointer;
+      }
+
+      /* Courses Grid */
+      .courses-section {
+        padding: 50px 0 80px;
+      }
+
+      .courses-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+      }
+
+      .course-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+
+      .course-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .course-image {
+        height: 180px;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+      }
+
+      .course-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .course-badge.beginner {
+        background: #00adbc;
+      }
+      .course-badge.intermediate {
+        background: #ff9800;
+      }
+      .course-badge.advanced {
+        background: #f44336;
+      }
+
+      .course-content {
+        padding: 20px;
+      }
+
+      .course-category {
+        display: inline-block;
+        background: #f0e6ff;
+        color: #5c2d91;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+
+      .course-title {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: #2d2d2d;
+      }
+
+      .course-description {
+        color: #666;
+        font-size: 14px;
+        margin-bottom: 15px;
+        line-height: 1.5;
+      }
+
+      .course-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 15px;
+        border-top: 1px solid #f0f0f0;
+      }
+
+      .course-duration {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: #888;
+        font-size: 13px;
+      }
+
+      .course-duration i {
+        font-size: 12px;
+      }
+
+      .course-students {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: #888;
+        font-size: 13px;
+      }
+
+      /* Pagination */
+      .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 50px;
+      }
+
+      .page-btn {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #e0e0e0;
+        background: white;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .page-btn:hover,
+      .page-btn.active {
+        background: #5c2d91;
+        color: white;
+        border-color: #5c2d91;
+      }
+
+      /* Newsletter */
+      .newsletter {
+        background: linear-gradient(135deg, #f3e8ff, #e0f7fa);
+        padding: 60px 0;
+        text-align: center;
+      }
+
+      .newsletter h2 {
+        font-size: 32px;
+        margin-bottom: 15px;
+      }
+
+      .newsletter p {
+        color: #666;
+        margin-bottom: 25px;
+      }
+
+      .newsletter-form {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+
+      .newsletter-form input {
+        padding: 14px 20px;
+        width: 300px;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        font-size: 16px;
+        outline: none;
+      }
+
+      .newsletter-form button {
+        background: #5c2d91;
+        color: white;
+        border: none;
+        padding: 14px 30px;
+        border-radius: 10px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .newsletter-form button:hover {
+        background: #7b46b3;
+      }
+
+      /* Footer */
+      .footer {
+        background: #1a1a2e;
+        color: #aaa;
+        padding: 60px 0 30px;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-logo {
+        font-size: 24px;
+        font-weight: 800;
+        color: white;
+        text-decoration: none;
+        margin-bottom: 15px;
+        display: inline-block;
+      }
+
+      .footer-logo span {
+        color: #00adbc;
+      }
+
+      .footer-about p {
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .footer-social {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .footer-social a {
+        color: #aaa;
+        font-size: 20px;
+        transition: color 0.3s;
+      }
+
+      .footer-social a:hover {
+        color: #00adbc;
+      }
+
+      .footer-links h4 {
+        color: white;
+        margin-bottom: 20px;
+        font-size: 18px;
+      }
+
+      .footer-links ul {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+
+      .footer-links a {
+        color: #aaa;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-links a:hover {
+        color: #00adbc;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 30px;
+        border-top: 1px solid #333;
+      }
+
+      /* Responsive */
+      @media (max-width: 968px) {
+        .courses-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .footer-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-container {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .nav-links {
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 20px;
+        }
+
+        .filter-container {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .filter-tabs {
+          justify-content: center;
+        }
+
+        .search-box {
+          justify-content: center;
+        }
+
+        .courses-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .footer-social {
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav-container">
+        <a href="#" class="logo">Tech<span>Edu</span></a>
+        <ul class="nav-links">
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="kursus.html" class="active">Kursus</a></li>
+          <li><a href="guru.html">Guru</a></li>
+          <li><a href="tentang.html">Tentang</a></li>
+          <li><a href="berita.html">Berita</a></li>
+          <li><a href="ekskul.html">Ekstrakurikuler</a></li>
+        </ul>
+
+        <div>
+          <button class="btn-login">Masuk</button>
+          <button class="btn-signup">Daftar</button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+      <div class="container">
+        <h1>Jelajahi Kursus</h1>
+        <p>
+          Pilih dari puluhan kursus coding dan AI yang dirancang untuk semua
+          tingkat keahlian
+        </p>
+      </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+      <div class="container">
+        <div class="filter-container">
+          <div class="filter-tabs">
+            <button class="filter-btn active" data-filter="all">Semua</button>
+            <button class="filter-btn" data-filter="beginner">Pemula</button>
+            <button class="filter-btn" data-filter="intermediate">
+              Menengah
+            </button>
+            <button class="filter-btn" data-filter="advanced">Lanjutan</button>
+            <button class="filter-btn" data-filter="ai">
+              AI & Machine Learning
+            </button>
+            <button class="filter-btn" data-filter="web">
+              Web Development
+            </button>
+            <button class="filter-btn" data-filter="mobile">
+              Mobile Development
+            </button>
+          </div>
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Cari kursus..." id="searchInput" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+      <div class="container">
+        <div class="stats-bar-content">
+          <div class="course-count" id="courseCount">Menampilkan 12 kursus</div>
+          <select class="sort-select" id="sortSelect">
+            <option value="default">Urutkan: Default</option>
+            <option value="popular">Terpopuler</option>
+            <option value="newest">Terbaru</option>
+            <option value="name-asc">Nama A-Z</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Courses Grid -->
+    <section class="courses-section">
+      <div class="container">
+        <div class="courses-grid" id="coursesGrid">
+          <!-- Courses will be populated by JavaScript -->
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination" id="pagination">
+          <button class="page-btn" data-page="1">1</button>
+          <button class="page-btn" data-page="2">2</button>
+          <button class="page-btn" data-page="3">3</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+      <div class="container">
+        <h2>Dapatkan Update Kursus Terbaru</h2>
+        <p>Berlangganan newsletter untuk info kursus baru dan promo menarik</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Email Anda" />
+          <button type="submit">
+            Berlangganan <i class="fas fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-about">
+            <a href="#" class="footer-logo">Tech<span>Edu</span></a>
+            <p>
+              Misi kami adalah membuat pendidikan teknologi berkualitas tinggi
+              dapat diakses oleh semua orang, di mana pun mereka berada.
+            </p>
+            <div class="footer-social">
+              <a href="#"><i class="fab fa-facebook"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Pembelajaran</h4>
+            <ul>
+              <li><a href="#">Kursus Coding</a></li>
+              <li><a href="#">Kursus AI</a></li>
+              <li><a href="#">Proyek</a></li>
+              <li><a href="#">Sertifikasi</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Dukungan</h4>
+            <ul>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Bantuan</a></li>
+              <li><a href="#">Komunitas</a></li>
+              <li><a href="#">Kontak</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Tentang</h4>
+            <ul>
+              <li><a href="#">Tentang Kami</a></li>
+              <li><a href="#">Karir</a></li>
+              <li><a href="#">Mitra</a></li>
+              <li><a href="#">Blog</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            &copy; 2024 TechEdu. Semua hak dilindungi. Memberdayakan generasi
+            masa depan melalui teknologi.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Data Kursus
+      const courses = [
+        {
+          id: 1,
+          title: "Dasar-Dasar Python",
+          description:
+            "Pelajari pemrograman Python dari nol. Cocok untuk pemula yang ingin memulai karir di programming.",
+          category: "beginner",
+          type: "web",
+          duration: "8 minggu",
+          students: "12.5k",
+          image: "https://cdn-icons-png.flaticon.com/512/5968/5968350.png",
+          isNew: false,
+          isPopular: true,
+        },
+        {
+          id: 2,
+          title: "Pengantar AI & Machine Learning",
+          description:
+            "Memahami konsep dasar AI, neural network, dan aplikasi machine learning di dunia nyata.",
+          category: "intermediate",
+          type: "ai",
+          duration: "10 minggu",
+          students: "8.2k",
+          image: "https://cdn-icons-png.flaticon.com/512/4248/4248685.png",
+          isNew: true,
+          isPopular: true,
+        },
+        {
+          id: 3,
+          title: "Pengembangan Web Modern",
+          description:
+            "Bangun website interaktif dengan HTML, CSS, JavaScript, dan framework modern React.",
+          category: "beginner",
+          type: "web",
+          duration: "12 minggu",
+          students: "15.3k",
+          image: "https://cdn-icons-png.flaticon.com/512/888/888859.png",
+          isNew: false,
+          isPopular: true,
+        },
+        {
+          id: 4,
+          title: "Data Science dengan Python",
+          description:
+            "Analisis data, visualisasi, dan machine learning menggunakan library Python populer.",
+          category: "intermediate",
+          type: "ai",
+          duration: "10 minggu",
+          students: "6.8k",
+          image: "https://cdn-icons-png.flaticon.com/512/1055/1055687.png",
+          isNew: false,
+          isPopular: false,
+        },
+        {
+          id: 5,
+          title: "Deep Learning & Neural Networks",
+          description:
+            "Pelajari arsitektur neural network, TensorFlow, dan implementasi model deep learning.",
+          category: "advanced",
+          type: "ai",
+          duration: "12 minggu",
+          students: "4.2k",
+          image: "https://cdn-icons-png.flaticon.com/512/2103/2103747.png",
+          isNew: true,
+          isPopular: false,
+        },
+        {
+          id: 6,
+          title: "React Native Mobile Dev",
+          description:
+            "Bangun aplikasi mobile cross-platform dengan React Native untuk iOS dan Android.",
+          category: "intermediate",
+          type: "mobile",
+          duration: "8 minggu",
+          students: "5.1k",
+          image: "https://cdn-icons-png.flaticon.com/512/1183/1183672.png",
+          isNew: true,
+          isPopular: false,
+        },
+        {
+          id: 7,
+          title: "JavaScript ES6+ Lanjutan",
+          description:
+            "Tingkatkan skill JavaScript Anda dengan konsep modern dan best practices.",
+          category: "intermediate",
+          type: "web",
+          duration: "6 minggu",
+          students: "9.4k",
+          image: "https://cdn-icons-png.flaticon.com/512/5968/5968292.png",
+          isNew: false,
+          isPopular: true,
+        },
+        {
+          id: 8,
+          title: "Natural Language Processing",
+          description:
+            "Pelajari cara memproses teks, sentiment analysis, dan membangun chatbot dengan NLP.",
+          category: "advanced",
+          type: "ai",
+          duration: "10 minggu",
+          students: "3.5k",
+          image: "https://cdn-icons-png.flaticon.com/512/8644/8644940.png",
+          isNew: true,
+          isPopular: false,
+        },
+        {
+          id: 9,
+          title: "Flutter untuk Pemula",
+          description:
+            "Bangun aplikasi mobile beautiful dengan Flutter dan Dart dari dasar.",
+          category: "beginner",
+          type: "mobile",
+          duration: "8 minggu",
+          students: "7.8k",
+          image: "https://cdn-icons-png.flaticon.com/512/5968/5968358.png",
+          isNew: false,
+          isPopular: false,
+        },
+        {
+          id: 10,
+          title: "Backend dengan Node.js",
+          description:
+            "Bangun REST API dan aplikasi backend scalable dengan Node.js dan Express.",
+          category: "intermediate",
+          type: "web",
+          duration: "8 minggu",
+          students: "6.2k",
+          image: "https://cdn-icons-png.flaticon.com/512/5968/5968322.png",
+          isNew: false,
+          isPopular: false,
+        },
+        {
+          id: 11,
+          title: "Computer Vision",
+          description:
+            "Pelajari pengolahan citra, deteksi objek, dan aplikasi computer vision dengan OpenCV.",
+          category: "advanced",
+          type: "ai",
+          duration: "10 minggu",
+          students: "3.9k",
+          image: "https://cdn-icons-png.flaticon.com/512/1995/1995575.png",
+          isNew: false,
+          isPopular: false,
+        },
+        {
+          id: 12,
+          title: "Git & GitHub Essentials",
+          description:
+            "Version control untuk developer: kolaborasi tim dan manajemen kode.",
+          category: "beginner",
+          type: "web",
+          duration: "4 minggu",
+          students: "11.2k",
+          image: "https://cdn-icons-png.flaticon.com/512/733/733609.png",
+          isNew: true,
+          isPopular: true,
+        },
+      ];
+
+      let currentFilter = "all";
+      let currentSearch = "";
+      let currentSort = "default";
+      let currentPage = 1;
+      const itemsPerPage = 6;
+
+      function getCategoryBadge(category) {
+        const badges = {
+          beginner: '<span class="course-badge beginner">Pemula</span>',
+          intermediate:
+            '<span class="course-badge intermediate">Menengah</span>',
+          advanced: '<span class="course-badge advanced">Lanjutan</span>',
+        };
+        return badges[category] || "";
+      }
+
+      function getCategoryName(category) {
+        const names = {
+          beginner: "Pemula",
+          intermediate: "Menengah",
+          advanced: "Lanjutan",
+          ai: "AI & ML",
+          web: "Web Dev",
+          mobile: "Mobile Dev",
+        };
+        return names[category] || category;
+      }
+
+      function filterCourses() {
+        let filtered = [...courses];
+
+        if (currentFilter !== "all") {
+          if (currentFilter === "ai") {
+            filtered = filtered.filter((c) => c.type === "ai");
+          } else if (currentFilter === "web") {
+            filtered = filtered.filter((c) => c.type === "web");
+          } else if (currentFilter === "mobile") {
+            filtered = filtered.filter((c) => c.type === "mobile");
+          } else {
+            filtered = filtered.filter((c) => c.category === currentFilter);
+          }
+        }
+
+        if (currentSearch) {
+          filtered = filtered.filter(
+            (c) =>
+              c.title.toLowerCase().includes(currentSearch.toLowerCase()) ||
+              c.description.toLowerCase().includes(currentSearch.toLowerCase()),
+          );
+        }
+
+        if (currentSort === "popular") {
+          filtered = filtered.sort(
+            (a, b) => (b.isPopular ? 1 : 0) - (a.isPopular ? 1 : 0),
+          );
+        } else if (currentSort === "newest") {
+          filtered = filtered.sort(
+            (a, b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0),
+          );
+        } else if (currentSort === "name-asc") {
+          filtered = filtered.sort((a, b) => a.title.localeCompare(b.title));
+        }
+
+        return filtered;
+      }
+
+      function renderCourses() {
+        const filtered = filterCourses();
+        const totalPages = Math.ceil(filtered.length / itemsPerPage);
+        const start = (currentPage - 1) * itemsPerPage;
+        const paginated = filtered.slice(start, start + itemsPerPage);
+
+        const grid = document.getElementById("coursesGrid");
+        const courseCount = document.getElementById("courseCount");
+
+        courseCount.textContent = `Menampilkan ${filtered.length} kursus`;
+
+        if (paginated.length === 0) {
+          grid.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 60px;">
+                        <i class="fas fa-search" style="font-size: 48px; color: #ccc; margin-bottom: 20px;"></i>
+                        <h3>Tidak ada kursus ditemukan</h3>
+                        <p>Coba dengan kata kunci atau filter yang berbeda</p>
+                    </div>
+                `;
+          return;
+        }
+
+        grid.innerHTML = paginated
+          .map(
+            (course) => `
+                <div class="course-card" data-id="${course.id}">
+                    <div class="course-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center;">
+                        <img src="${course.image}" alt="${course.title}" style="width: 80px; height: 80px; object-fit: contain;">
+                        ${getCategoryBadge(course.category)}
+                    </div>
+                    <div class="course-content">
+                        <span class="course-category">${getCategoryName(course.type)}</span>
+                        <h3 class="course-title">${course.title}</h3>
+                        <p class="course-description">${course.description}</p>
+                        <div class="course-meta">
+                            <span class="course-duration"><i class="far fa-clock"></i> ${course.duration}</span>
+                            <span class="course-students"><i class="fas fa-users"></i> ${course.students} siswa</span>
+                        </div>
+                    </div>
+                </div>
+            `,
+          )
+          .join("");
+
+        renderPagination(totalPages);
+      }
+
+      function renderPagination(totalPages) {
+        const paginationContainer = document.getElementById("pagination");
+        if (totalPages <= 1) {
+          paginationContainer.style.display = "none";
+          return;
+        }
+        paginationContainer.style.display = "flex";
+
+        let pages = [];
+        for (let i = 1; i <= totalPages; i++) {
+          pages.push(
+            `<button class="page-btn ${i === currentPage ? "active" : ""}" data-page="${i}">${i}</button>`,
+          );
+        }
+        paginationContainer.innerHTML = pages.join("");
+
+        document.querySelectorAll(".page-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            currentPage = parseInt(btn.dataset.page);
+            renderCourses();
+            window.scrollTo({ top: 400, behavior: "smooth" });
+          });
+        });
+      }
+
+      // Event Listeners
+      document.querySelectorAll(".filter-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".filter-btn")
+            .forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          currentFilter = btn.dataset.filter;
+          currentPage = 1;
+          renderCourses();
+        });
+      });
+
+      document.getElementById("searchInput").addEventListener("input", (e) => {
+        currentSearch = e.target.value;
+        currentPage = 1;
+        renderCourses();
+      });
+
+      document.getElementById("sortSelect").addEventListener("change", (e) => {
+        currentSort = e.target.value;
+        renderCourses();
+      });
+
+      // Initial render
+      renderCourses();
+    </script>
+  </body>
+</html>

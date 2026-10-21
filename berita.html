@@ -1,0 +1,1732 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Berita & Kegiatan - TechEdu | Platform Edukasi Teknologi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        line-height: 1.6;
+        color: #2d2d2d;
+        background: #f9f9ff;
+      }
+
+      .container {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 0 30px;
+      }
+
+      /* Header */
+      .header {
+        background: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 30px;
+        max-width: 1300px;
+        margin: 0 auto;
+      }
+
+      .logo {
+        font-size: 28px;
+        font-weight: 800;
+        color: #5c2d91;
+        text-decoration: none;
+      }
+
+      .logo span {
+        color: #00adbc;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 30px;
+        list-style: none;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: #4a4a4a;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: #5c2d91;
+      }
+
+      .btn-login {
+        background: transparent;
+        border: 2px solid #5c2d91;
+        color: #5c2d91;
+        padding: 8px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .btn-login:hover {
+        background: #5c2d91;
+        color: white;
+      }
+
+      .btn-signup {
+        background: #5c2d91;
+        border: none;
+        color: white;
+        padding: 8px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .btn-signup:hover {
+        background: #7b46b3;
+      }
+
+      /* News Ticker (Running Text) */
+      .news-ticker {
+        background: linear-gradient(135deg, #5c2d91, #3a1c5c);
+        color: white;
+        padding: 12px 0;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .ticker-container {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        white-space: nowrap;
+        animation: tickerScroll 30s linear infinite;
+      }
+
+      .ticker-label {
+        background: #00adbc;
+        padding: 4px 15px;
+        border-radius: 30px;
+        font-size: 14px;
+        font-weight: 700;
+        display: inline-block;
+        margin-right: 20px;
+      }
+
+      .ticker-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .ticker-item a {
+        color: white;
+        text-decoration: none;
+        font-size: 14px;
+        transition: opacity 0.3s;
+      }
+
+      .ticker-item a:hover {
+        opacity: 0.8;
+      }
+
+      .ticker-separator {
+        width: 5px;
+        height: 5px;
+        background: #00adbc;
+        border-radius: 50%;
+        display: inline-block;
+      }
+
+      @keyframes tickerScroll {
+        0% {
+          transform: translateX(100%);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+
+      .ticker-container:hover {
+        animation-play-state: paused;
+      }
+
+      /* Page Hero */
+      .page-hero {
+        background: linear-gradient(135deg, #5c2d91 0%, #3a1c5c 100%);
+        color: white;
+        padding: 60px 0;
+        text-align: center;
+      }
+
+      .page-hero h1 {
+        font-size: 48px;
+        margin-bottom: 15px;
+      }
+
+      .page-hero p {
+        font-size: 18px;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      /* Filter Section */
+      .filter-section {
+        background: white;
+        padding: 30px 0;
+        border-bottom: 1px solid #e0e0e0;
+        position: sticky;
+        top: 80px;
+        z-index: 99;
+      }
+
+      .filter-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .filter-tabs {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+
+      .filter-btn {
+        background: #f0f0f0;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 30px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s;
+        color: #666;
+      }
+
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: #5c2d91;
+        color: white;
+      }
+
+      .search-box {
+        display: flex;
+        align-items: center;
+        background: #f0f0f0;
+        border-radius: 40px;
+        padding: 8px 20px;
+      }
+
+      .search-box i {
+        color: #999;
+      }
+
+      .search-box input {
+        border: none;
+        background: none;
+        padding: 8px 12px;
+        font-size: 14px;
+        width: 250px;
+        outline: none;
+      }
+
+      /* Featured News */
+      .featured-news {
+        padding: 60px 0;
+        background: white;
+      }
+
+      .featured-card {
+        display: flex;
+        background: #f9f9ff;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+
+      .featured-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .featured-image {
+        flex: 1;
+        min-height: 350px;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .featured-content {
+        flex: 1;
+        padding: 40px;
+      }
+
+      .featured-badge {
+        display: inline-block;
+        background: #00adbc;
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 15px;
+      }
+
+      .featured-content h2 {
+        font-size: 28px;
+        margin-bottom: 15px;
+        color: #2d2d2d;
+      }
+
+      .featured-meta {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+        color: #888;
+        font-size: 14px;
+      }
+
+      .featured-meta i {
+        margin-right: 5px;
+      }
+
+      .featured-full-content {
+        display: none;
+        color: #666;
+        margin-bottom: 20px;
+        line-height: 1.8;
+      }
+
+      .featured-full-content.show {
+        display: block;
+      }
+
+      .featured-excerpt {
+        color: #666;
+        margin-bottom: 20px;
+        line-height: 1.8;
+      }
+
+      .featured-excerpt.hide {
+        display: none;
+      }
+
+      .btn-read {
+        background: #5c2d91;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 10px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .btn-read:hover {
+        background: #7b46b3;
+      }
+
+      /* News Grid */
+      .news-section {
+        padding: 60px 0;
+        background: #f9f9ff;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .section-header h2 {
+        font-size: 36px;
+        margin-bottom: 15px;
+      }
+
+      .section-header p {
+        color: #666;
+        font-size: 18px;
+      }
+
+      .news-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+      }
+
+      .news-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+
+      .news-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .news-image {
+        height: 200px;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+      }
+
+      .news-category {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: rgba(92, 45, 145, 0.9);
+        color: white;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .news-content {
+        padding: 20px;
+      }
+
+      .news-date {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: #888;
+        font-size: 12px;
+        margin-bottom: 10px;
+      }
+
+      .news-title {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        line-height: 1.4;
+      }
+
+      .news-excerpt {
+        color: #666;
+        font-size: 14px;
+        margin-bottom: 15px;
+        line-height: 1.5;
+      }
+
+      .news-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 15px;
+        border-top: 1px solid #f0f0f0;
+      }
+
+      .news-stats {
+        display: flex;
+        gap: 15px;
+        font-size: 12px;
+        color: #888;
+      }
+
+      .read-more {
+        color: #5c2d91;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      /* Upcoming Events */
+      .events-section {
+        padding: 60px 0;
+        background: white;
+      }
+
+      .events-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+      }
+
+      .event-card {
+        display: flex;
+        background: #f9f9ff;
+        border-radius: 16px;
+        overflow: hidden;
+        transition: transform 0.3s;
+      }
+
+      .event-card:hover {
+        transform: translateY(-3px);
+      }
+
+      .event-date {
+        background: linear-gradient(135deg, #5c2d91, #3a1c5c);
+        color: white;
+        padding: 20px;
+        text-align: center;
+        min-width: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .event-date .day {
+        font-size: 32px;
+        font-weight: 800;
+      }
+
+      .event-date .month {
+        font-size: 14px;
+      }
+
+      .event-details {
+        padding: 20px;
+        flex: 1;
+      }
+
+      .event-details h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      .event-details p {
+        color: #666;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+
+      .event-time,
+      .event-location {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 13px;
+        color: #888;
+        margin-right: 15px;
+      }
+
+      .btn-event {
+        background: transparent;
+        border: 1px solid #5c2d91;
+        color: #5c2d91;
+        padding: 8px 20px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: all 0.3s;
+      }
+
+      .btn-event:hover {
+        background: #5c2d91;
+        color: white;
+      }
+
+      /* Video Gallery */
+      .video-gallery {
+        padding: 60px 0;
+        background: #f9f9ff;
+      }
+
+      .video-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+      }
+
+      .video-card {
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.3s;
+      }
+
+      .video-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .video-thumbnail {
+        position: relative;
+        height: 180px;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .play-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 50px;
+        height: 50px;
+        background: rgba(92, 45, 145, 0.9);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 20px;
+        transition: all 0.3s;
+      }
+
+      .video-card:hover .play-btn {
+        transform: translate(-50%, -50%) scale(1.1);
+      }
+
+      .video-info {
+        padding: 15px;
+      }
+
+      .video-info h4 {
+        font-size: 14px;
+        margin-bottom: 5px;
+      }
+
+      .video-duration {
+        font-size: 12px;
+        color: #888;
+      }
+
+      /* Newsletter */
+      .newsletter {
+        padding: 60px 0;
+        background: linear-gradient(135deg, #5c2d91, #3a1c5c);
+        color: white;
+        text-align: center;
+      }
+
+      .newsletter h2 {
+        font-size: 32px;
+        margin-bottom: 15px;
+      }
+
+      .newsletter p {
+        margin-bottom: 25px;
+        opacity: 0.9;
+      }
+
+      .newsletter-form {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+
+      .newsletter-form input {
+        padding: 14px 20px;
+        width: 300px;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        outline: none;
+      }
+
+      .newsletter-form button {
+        background: #00adbc;
+        color: white;
+        border: none;
+        padding: 14px 30px;
+        border-radius: 10px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .newsletter-form button:hover {
+        background: #008b9a;
+      }
+
+      /* Pagination */
+      .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 50px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .page-btn {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #e0e0e0;
+        background: white;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-weight: 500;
+      }
+
+      .page-btn:hover,
+      .page-btn.active {
+        background: #5c2d91;
+        color: white;
+        border-color: #5c2d91;
+      }
+
+      .page-nav {
+        width: auto;
+        padding: 0 15px;
+        gap: 8px;
+      }
+
+      .page-nav i {
+        margin-right: 5px;
+      }
+
+      .page-nav.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+
+      .page-ellipsis {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #888;
+      }
+
+      /* Footer */
+      .footer {
+        background: #1a1a2e;
+        color: #aaa;
+        padding: 60px 0 30px;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-logo {
+        font-size: 24px;
+        font-weight: 800;
+        color: white;
+        text-decoration: none;
+        margin-bottom: 15px;
+        display: inline-block;
+      }
+
+      .footer-logo span {
+        color: #00adbc;
+      }
+
+      .footer-about p {
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .footer-social {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .footer-social a {
+        color: #aaa;
+        font-size: 20px;
+        transition: color 0.3s;
+      }
+
+      .footer-social a:hover {
+        color: #00adbc;
+      }
+
+      .footer-links h4 {
+        color: white;
+        margin-bottom: 20px;
+        font-size: 18px;
+      }
+
+      .footer-links ul {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+
+      .footer-links a {
+        color: #aaa;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-links a:hover {
+        color: #00adbc;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 30px;
+        border-top: 1px solid #333;
+      }
+
+      /* Modal for Video */
+      .video-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 2000;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .video-modal.active {
+        display: flex;
+      }
+
+      .modal-content {
+        position: relative;
+        max-width: 800px;
+        width: 90%;
+      }
+
+      .modal-content iframe {
+        width: 100%;
+        height: 450px;
+        border: none;
+        border-radius: 10px;
+      }
+
+      .close-modal {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        color: white;
+        font-size: 30px;
+        cursor: pointer;
+      }
+
+      /* Responsive */
+      @media (max-width: 968px) {
+        .featured-card {
+          flex-direction: column;
+        }
+
+        .news-grid,
+        .video-grid,
+        .events-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .footer-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-container {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .nav-links {
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 20px;
+        }
+
+        .page-hero h1 {
+          font-size: 32px;
+        }
+
+        .news-grid,
+        .video-grid,
+        .events-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .filter-container {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .filter-tabs {
+          justify-content: center;
+        }
+
+        .search-box {
+          justify-content: center;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .footer-social {
+          justify-content: center;
+        }
+
+        .pagination {
+          gap: 5px;
+        }
+
+        .page-btn {
+          width: 35px;
+          height: 35px;
+        }
+
+        .page-nav {
+          padding: 0 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav-container">
+        <a href="#" class="logo">Tech<span>Edu</span></a>
+        <ul class="nav-links">
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="kursus.html">Kursus</a></li>
+          <li><a href="guru.html">Guru</a></li>
+          <li><a href="tentang.html">Tentang</a></li>
+          <li><a href="berita.html" class="active">Berita</a></li>
+          <li><a href="ekskul.html">Ekstrakurikuler</a></li>
+        </ul>
+        <div>
+          <button class="btn-login">Masuk</button>
+          <button class="btn-signup">Daftar</button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- News Ticker (Running Text) -->
+    <div class="news-ticker">
+      <div class="container">
+        <div class="ticker-container">
+          <span class="ticker-label">TERBARU</span>
+          <div class="ticker-item">
+            <a href="#"
+              >🎉 Pendaftaran Program AI untuk Guru dibuka hingga 31 Desember
+              2024!</a
+            >
+            <span class="ticker-separator"></span>
+            <a href="#"
+              >📢 Webinar "Masa Depan Pendidikan AI" akan digelar 15 Januari
+              2025</a
+            >
+            <span class="ticker-separator"></span>
+            <a href="#"
+              >🏆 TechEdu meraih penghargaan "Best EdTech Platform 2024"</a
+            >
+            <span class="ticker-separator"></span>
+            <a href="#"
+              >🚀 500+ siswa baru bergabung di Program Coding Bootcamp</a
+            >
+            <span class="ticker-separator"></span>
+            <a href="#"
+              >💡 Tips sukses belajar coding dari para expert TechEdu</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <h1>Berita & Kegiatan</h1>
+        <p>
+          Informasi terbaru seputar TechEdu, dunia pendidikan, dan teknologi
+        </p>
+      </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+      <div class="container">
+        <div class="filter-container">
+          <div class="filter-tabs">
+            <button class="filter-btn active" data-filter="all">Semua</button>
+            <button class="filter-btn" data-filter="berita">Berita</button>
+            <button class="filter-btn" data-filter="event">Event</button>
+            <button class="filter-btn" data-filter="prestasi">Prestasi</button>
+            <button class="filter-btn" data-filter="pengumuman">
+              Pengumuman
+            </button>
+          </div>
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Cari berita..." id="searchInput" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured News -->
+    <section class="featured-news" id="featuredNews">
+      <div class="container">
+        <div class="featured-card" id="featuredCard">
+          <div
+            class="featured-image"
+            style="
+              background-image: url(&quot;https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&quot;);
+            "
+          ></div>
+          <div class="featured-content" id="featuredContent">
+            <span class="featured-badge" id="featuredBadge">BERITA UTAMA</span>
+            <h2 id="featuredTitle">
+              TechEdu Raih Penghargaan EdTech Terbaik 2024
+            </h2>
+            <div class="featured-meta" id="featuredMeta">
+              <span><i class="far fa-calendar"></i> 15 Desember 2024</span>
+              <span><i class="far fa-eye"></i> 2.500 views</span>
+              <span><i class="far fa-comment"></i> 45 komentar</span>
+            </div>
+            <div class="featured-excerpt" id="featuredExcerpt">
+              TechEdu berhasil meraih penghargaan sebagai platform edukasi
+              teknologi terbaik tahun 2024. Penghargaan ini diberikan atas
+              inovasi dalam metode pembelajaran AI dan coding yang interaktif
+              serta aksesibilitas untuk seluruh kalangan.
+            </div>
+            <div class="featured-full-content" id="featuredFullContent">
+              Acara penghargaan diselenggarakan di Jakarta dan dihadiri oleh
+              Menteri Pendidikan. Lorem ipsum dolor sit amet consectetur
+              adipisicing elit. Accusantium illum laboriosam odio architecto
+              adipisci, nostrum neque dolorem, magnam vitae excepturi
+              consequuntur sapiente laborum cupiditate quaerat tempore.
+              Consequuntur necessitatibus magnam itaque. Lorem ipsum, dolor sit
+              amet consectetur adipisicing elit. Nulla enim rem sed nihil eaque
+              suscipit, esse harum quaerat ut doloremque maxime expedita minus,
+              error voluptatibus facilis magnam, iste est laudantium.<br /><br />
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+              Molestias velit itaque, pariatur consectetur cumque nostrum
+              consequuntur nihil laboriosam, deserunt doloribus cum quidem sit
+              repellat inventore nesciunt iure, officiis aliquid mollitia?<br /><br />
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore
+              consequuntur quidem libero doloremque expedita dolorum deserunt,
+              porro tempora natus animi dolores quis exercitationem, illum ullam
+              ratione nihil ipsum eaque eveniet?
+            </div>
+            <button class="btn-read" id="btnReadMore">
+              Baca Selengkapnya <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- News Grid -->
+    <section class="news-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Berita Terkini</h2>
+          <p>Informasi terbaru seputar TechEdu dan dunia pendidikan</p>
+        </div>
+        <div class="news-grid" id="newsGrid">
+          <!-- News akan diisi oleh JavaScript -->
+        </div>
+
+        <!-- Pagination dengan Back dan Next -->
+        <div class="pagination" id="pagination">
+          <!-- Akan diisi JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Upcoming Events -->
+    <section class="events-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Kegiatan Mendatang</h2>
+          <p>Jangan lewatkan event seru dari TechEdu</p>
+        </div>
+        <div class="events-grid" id="eventsGrid">
+          <!-- Events akan diisi oleh JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Gallery -->
+    <section class="video-gallery">
+      <div class="container">
+        <div class="section-header">
+          <h2>Video Kegiatan</h2>
+          <p>Dokumentasi seru kegiatan TechEdu</p>
+        </div>
+        <div class="video-grid" id="videoGrid">
+          <!-- Videos akan diisi oleh JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal">
+      <div class="modal-content">
+        <span class="close-modal" id="closeModal">&times;</span>
+        <iframe
+          id="videoIframe"
+          src=""
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+      <div class="container">
+        <h2>Dapatkan Update Berita Terbaru</h2>
+        <p>Berlangganan newsletter untuk info terbaru dari TechEdu</p>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" placeholder="Email Anda" required />
+          <button type="submit">
+            Berlangganan <i class="fas fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-about">
+            <a href="#" class="footer-logo">Tech<span>Edu</span></a>
+            <p>
+              Misi kami adalah membuat pendidikan teknologi berkualitas tinggi
+              dapat diakses oleh semua orang, di mana pun mereka berada.
+            </p>
+            <div class="footer-social">
+              <a href="#"><i class="fab fa-facebook"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Pembelajaran</h4>
+            <ul>
+              <li><a href="#">Kursus Coding</a></li>
+              <li><a href="#">Kursus AI</a></li>
+              <li><a href="#">Proyek</a></li>
+              <li><a href="#">Sertifikasi</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Informasi</h4>
+            <ul>
+              <li><a href="#">Tentang Kami</a></li>
+              <li><a href="#">Karir</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Pers</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Bantuan</h4>
+            <ul>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Hubungi Kami</a></li>
+              <li><a href="#">Kebijakan Privasi</a></li>
+              <li><a href="#">Syarat & Ketentuan</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            &copy; 2024 TechEdu. Semua hak dilindungi. Memberdayakan generasi
+            masa depan melalui teknologi.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Data Berita lengkap dengan isi penuh
+      const newsData = [
+        {
+          id: 1,
+          title: "Pelatihan AI Gratis untuk Guru",
+          category: "berita",
+          date: "10 Des 2024",
+          views: "1.2k",
+          excerpt:
+            "TechEdu membuka pendaftaran pelatihan AI gratis untuk 1000 guru di seluruh Indonesia.",
+          fullContent:
+            "TechEdu membuka pendaftaran pelatihan AI gratis untuk 1000 guru di seluruh Indonesia. Program ini akan berlangsung selama 3 bulan dengan materi mulai dari dasar AI hingga implementasinya dalam pembelajaran. Peserta akan mendapatkan sertifikat dan akses ke komunitas eksklusif. Pendaftaran ditutup 31 Januari 2025. Jangan lewatkan kesempatan emas ini untuk meningkatkan kompetensi di era digital!",
+          image:
+            "https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=400",
+          type: "berita",
+          badge: "BERITA TERBARU",
+        },
+        {
+          id: 2,
+          title: "Siswa TechEdu Juara Hackathon Nasional",
+          category: "prestasi",
+          date: "5 Des 2024",
+          views: "3.1k",
+          excerpt:
+            "Tim siswa TechEdu berhasil meraih juara pertama dalam ajang Hackathon Nasional 2024.",
+          fullContent:
+            "Tim siswa TechEdu berhasil meraih juara pertama dalam ajang Hackathon Nasional 2024 dengan mengembangkan aplikasi berbasis AI untuk deteksi dini penyakit tanaman. Mereka berhasil mengalahkan 500 tim dari seluruh Indonesia. Penghargaan diserahkan langsung oleh Menteri Komunikasi dan Informatika. Selamat untuk tim TechEdu! Prestasi ini membuktikan bahwa siswa Indonesia mampu bersaing di kancah nasional.",
+          image:
+            "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=400",
+          type: "prestasi",
+          badge: "PRESTASI",
+        },
+        {
+          id: 3,
+          title: "Kurikulum Coding Terbaru Diluncurkan",
+          category: "pengumuman",
+          date: "1 Des 2024",
+          views: "890",
+          excerpt:
+            "TechEdu meluncurkan kurikulum coding terbaru yang lebih interaktif dan sesuai industri.",
+          fullContent:
+            "TechEdu meluncurkan kurikulum coding terbaru yang lebih interaktif dan sesuai dengan kebutuhan industri saat ini. Kurikulum ini mencakup teknologi terbaru seperti React, Node.js, Python untuk Data Science, dan Flutter untuk mobile development. Siswa juga akan mengerjakan proyek nyata dari mitra industri. Kurikulum baru ini mulai berlaku Januari 2025.",
+          image:
+            "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400",
+          type: "berita",
+          badge: "PENGUMUMAN",
+        },
+        {
+          id: 4,
+          title: "Webinar: Masa Depan Pendidikan AI",
+          category: "event",
+          date: "28 Nov 2024",
+          views: "2.2k",
+          excerpt:
+            "Webinar bersama pakar AI dari Google dan Microsoft membahas masa depan pendidikan.",
+          fullContent:
+            "Webinar bersama pakar AI dari Google dan Microsoft membahas masa depan pendidikan dengan kecerdasan buatan. Acara akan berlangsung pada 15 Januari 2025 pukul 14.00 WIB secara virtual. Peserta akan mendapatkan e-sertifikat dan materi eksklusif. Pendaftaran gratis melalui website TechEdu. Segera daftar karena kuota terbatas untuk 1000 peserta pertama!",
+          image:
+            "https://images.unsplash.com/photo-1591115765373-5207764f72e4?w=400",
+          type: "event",
+          badge: "EVENT",
+        },
+        {
+          id: 5,
+          title: "Kerjasama dengan 50 Sekolah Baru",
+          category: "berita",
+          date: "20 Nov 2024",
+          views: "1.5k",
+          excerpt:
+            "TechEdu menjalin kerjasama dengan 50 sekolah baru untuk program coding bersama.",
+          fullContent:
+            "TechEdu menjalin kerjasama dengan 50 sekolah baru di seluruh Indonesia untuk program coding bersama. Program ini akan memberikan akses gratis ke platform TechEdu bagi siswa dan guru di sekolah mitra. Targetnya adalah melatih 10.000 siswa baru dalam 6 bulan ke depan. Kerjasama ini merupakan bagian dari misi TechEdu untuk mencerdaskan generasi muda Indonesia di bidang teknologi.",
+          image:
+            "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400",
+          type: "berita",
+          badge: "KERJASAMA",
+        },
+        {
+          id: 6,
+          title: "Pendaftaran Bootcamp 2025 Dibuka",
+          category: "pengumuman",
+          date: "15 Nov 2024",
+          views: "4.2k",
+          excerpt:
+            "Program bootcamp intensif untuk persiapan karir di bidang teknologi.",
+          fullContent:
+            "Pendaftaran Bootcamp 2025 telah dibuka! Program bootcamp intensif selama 12 minggu untuk persiapan karir di bidang teknologi. Tersedia 3 jalur: Web Development, Data Science, dan Mobile Development. Peserta akan dibimbing langsung oleh mentor expert dan mendapatkan kesempatan magang di perusahaan mitra. Early bird diskon 30% hingga 31 Desember 2024!",
+          image:
+            "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400",
+          type: "pengumuman",
+          badge: "PENDAFTARAN",
+        },
+        {
+          id: 7,
+          title: "Workshop React JS untuk Pemula",
+          category: "event",
+          date: "10 Nov 2024",
+          views: "980",
+          excerpt:
+            "Workshop intensif React JS bagi pemula yang ingin memulai karir frontend.",
+          fullContent:
+            "Workshop intensif React JS bagi pemula yang ingin memulai karir frontend. Akan dipandu oleh senior developer dari perusahaan teknologi ternama. Peserta akan belajar dari dasar hingga membuat project portfolio. Workshop berlangsung selama 2 hari dan peserta mendapatkan sertifikat serta materi eksklusif.",
+          image:
+            "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400",
+          type: "event",
+          badge: "WORKSHOP",
+        },
+        {
+          id: 8,
+          title: "TechEdu Berkolaborasi dengan Google",
+          category: "prestasi",
+          date: "5 Nov 2024",
+          views: "5.5k",
+          excerpt:
+            "TechEdu resmi menjadi mitra Google untuk program pelatihan cloud computing.",
+          fullContent:
+            "TechEdu resmi menjadi mitra Google untuk program pelatihan cloud computing. Kerjasama ini memungkinkan siswa TechEdu mendapatkan akses ke materi Google Cloud Platform secara gratis serta kesempatan mengikuti sertifikasi resmi Google. Program ini akan dimulai Januari 2025 dan terbuka untuk 500 siswa terpilih.",
+          image:
+            "https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?w=400",
+          type: "prestasi",
+          badge: "KOLABORASI",
+        },
+        {
+          id: 9,
+          title: "Lomba Desain UI/UX Nasional",
+          category: "event",
+          date: "28 Okt 2024",
+          views: "2.1k",
+          excerpt:
+            "TechEdu mengadakan lomba desain UI/UX nasional dengan total hadiah 30 juta.",
+          fullContent:
+            "TechEdu mengadakan lomba desain UI/UX nasional dengan total hadiah 30 juta rupiah. Lomba terbuka untuk pelajar dan mahasiswa seluruh Indonesia. Pendaftaran gratis dan ditutup 15 Desember 2024. Para pemenang akan mendapatkan mentoring dari desainer profesional dan kesempatan magang.",
+          image:
+            "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=400",
+          type: "event",
+          badge: "KOMPETISI",
+        },
+      ];
+
+      // Data Event
+      const eventsData = [
+        {
+          id: 1,
+          title: "Webinar AI untuk Pemula",
+          date: "20",
+          month: "Des",
+          time: "10:00 - 12:00 WIB",
+          location: "Zoom Meeting",
+          description: "Pelajari dasar-dasar AI bersama expert.",
+        },
+        {
+          id: 2,
+          title: "Coding Competition 2024",
+          date: "25",
+          month: "Des",
+          time: "09:00 - 17:00 WIB",
+          location: "TechEdu Tower",
+          description: "Kompetisi coding nasional dengan total hadiah 50 juta.",
+        },
+        {
+          id: 3,
+          title: "Workshop Mobile Development",
+          date: "5",
+          month: "Jan",
+          time: "13:00 - 16:00 WIB",
+          location: "Online",
+          description: "Bangun aplikasi mobile pertama Anda.",
+        },
+        {
+          id: 4,
+          title: "TechEdu Anniversary",
+          date: "15",
+          month: "Jan",
+          time: "08:00 - 20:00 WIB",
+          location: "Jakarta Convention Center",
+          description:
+            "Perayaan 6 tahun TechEdu dengan berbagai kegiatan seru.",
+        },
+      ];
+
+      // Data Video
+      const videosData = [
+        {
+          id: 1,
+          title: "Pengenalan AI untuk Pemula",
+          duration: "15:30",
+          thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg",
+          videoId: "dQw4w9WgXcQ",
+        },
+        {
+          id: 2,
+          title: "Tips Belajar Coding Efektif",
+          duration: "22:15",
+          thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg",
+          videoId: "dQw4w9WgXcQ",
+        },
+        {
+          id: 3,
+          title: "Webinar Masa Depan Teknologi",
+          duration: "45:00",
+          thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg",
+          videoId: "dQw4w9WgXcQ",
+        },
+      ];
+
+      let currentFilter = "all";
+      let currentSearch = "";
+      let currentPage = 1;
+      const itemsPerPage = 6;
+
+      // State untuk fitur "Baca Selengkapnya" di featured news
+      let isFullContentShown = false;
+
+      // Fungsi untuk menampilkan berita di container utama (featured section)
+      function displayNewsInFeatured(news) {
+        document.getElementById("featuredBadge").textContent =
+          news.badge ||
+          (news.type === "berita"
+            ? "BERITA"
+            : news.type === "prestasi"
+              ? "PRESTASI"
+              : news.type === "event"
+                ? "EVENT"
+                : "PENGUMUMAN");
+        document.getElementById("featuredTitle").textContent = news.title;
+        document.getElementById("featuredMeta").innerHTML = `
+          <span><i class="far fa-calendar"></i> ${news.date}</span>
+          <span><i class="far fa-eye"></i> ${news.views} views</span>
+        `;
+        document.getElementById("featuredExcerpt").textContent = news.excerpt;
+        document.getElementById("featuredFullContent").innerHTML =
+          news.fullContent ||
+          news.excerpt + "<br><br>Konten lengkap sedang dalam pengembangan.";
+
+        // Update gambar featured
+        const featuredImage = document.querySelector(
+          "#featuredCard .featured-image",
+        );
+        if (featuredImage && news.image) {
+          featuredImage.style.backgroundImage = `url('${news.image}')`;
+        }
+
+        // Reset state tampilan
+        isFullContentShown = false;
+        document.getElementById("featuredExcerpt").classList.remove("hide");
+        document.getElementById("featuredFullContent").classList.remove("show");
+        const btnRead = document.getElementById("btnReadMore");
+        btnRead.innerHTML =
+          'Baca Selengkapnya <i class="fas fa-arrow-right"></i>';
+
+        // Scroll ke featured section
+        document
+          .getElementById("featuredNews")
+          .scrollIntoView({ behavior: "smooth" });
+      }
+
+      // Fungsi untuk mendapatkan data yang sudah difilter
+      function getFilteredData() {
+        let filtered = [...newsData];
+
+        if (currentFilter !== "all") {
+          filtered = filtered.filter((n) => n.type === currentFilter);
+        }
+
+        if (currentSearch) {
+          filtered = filtered.filter(
+            (n) =>
+              n.title.toLowerCase().includes(currentSearch.toLowerCase()) ||
+              n.excerpt.toLowerCase().includes(currentSearch.toLowerCase()),
+          );
+        }
+
+        return filtered;
+      }
+
+      function renderNews() {
+        const filtered = getFilteredData();
+        const totalPages = Math.ceil(filtered.length / itemsPerPage);
+        const start = (currentPage - 1) * itemsPerPage;
+        const paginated = filtered.slice(start, start + itemsPerPage);
+
+        const grid = document.getElementById("newsGrid");
+
+        if (paginated.length === 0) {
+          grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 60px;"><i class="fas fa-newspaper" style="font-size: 48px; color: #ccc;"></i><h3>Tidak ada berita ditemukan</h3></div>`;
+          renderPagination(totalPages);
+          return;
+        }
+
+        grid.innerHTML = paginated
+          .map(
+            (news) => `
+                <div class="news-card" data-news-id="${news.id}">
+                    <div class="news-image" style="background-image: url('${news.image}')">
+                        <span class="news-category">${news.type === "berita" ? "Berita" : news.type === "prestasi" ? "Prestasi" : news.type === "event" ? "Event" : "Pengumuman"}</span>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date"><i class="far fa-calendar-alt"></i> ${news.date}</div>
+                        <h3 class="news-title">${news.title}</h3>
+                        <p class="news-excerpt">${news.excerpt.substring(0, 100)}${news.excerpt.length > 100 ? "..." : ""}</p>
+                        <div class="news-footer">
+                            <div class="news-stats"><i class="far fa-eye"></i> ${news.views}</div>
+                            <a href="#" class="read-more" data-news-id="${news.id}">Baca <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            `,
+          )
+          .join("");
+
+        // Event listener untuk tombol "Baca" pada setiap kartu berita
+        document.querySelectorAll(".read-more").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            const newsId = parseInt(btn.dataset.newsId);
+            const selectedNews = newsData.find((n) => n.id === newsId);
+            if (selectedNews) {
+              displayNewsInFeatured(selectedNews);
+            }
+          });
+        });
+
+        renderPagination(totalPages);
+      }
+
+      function renderPagination(totalPages) {
+        const paginationContainer = document.getElementById("pagination");
+        if (totalPages <= 1 && totalPages > 0) {
+          paginationContainer.innerHTML = `
+            <button class="page-btn page-nav disabled" id="prevPageBtn"><i class="fas fa-chevron-left"></i> Back</button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn page-nav disabled" id="nextPageBtn">Next <i class="fas fa-chevron-right"></i></button>
+          `;
+          return;
+        }
+
+        if (totalPages === 0) {
+          paginationContainer.innerHTML = "";
+          return;
+        }
+
+        let pagesHtml = "";
+
+        // Tombol Back
+        pagesHtml += `<button class="page-btn page-nav ${currentPage === 1 ? "disabled" : ""}" id="prevPageBtn"><i class="fas fa-chevron-left"></i> Back</button>`;
+
+        // Tombol nomor halaman dengan ellipsis
+        const maxVisiblePages = 5;
+        let startPage = Math.max(
+          1,
+          currentPage - Math.floor(maxVisiblePages / 2),
+        );
+        let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+        if (endPage - startPage + 1 < maxVisiblePages) {
+          startPage = Math.max(1, endPage - maxVisiblePages + 1);
+        }
+
+        if (startPage > 1) {
+          pagesHtml += `<button class="page-btn" data-page="1">1</button>`;
+          if (startPage > 2) {
+            pagesHtml += `<span class="page-ellipsis">...</span>`;
+          }
+        }
+
+        for (let i = startPage; i <= endPage; i++) {
+          pagesHtml += `<button class="page-btn ${i === currentPage ? "active" : ""}" data-page="${i}">${i}</button>`;
+        }
+
+        if (endPage < totalPages) {
+          if (endPage < totalPages - 1) {
+            pagesHtml += `<span class="page-ellipsis">...</span>`;
+          }
+          pagesHtml += `<button class="page-btn" data-page="${totalPages}">${totalPages}</button>`;
+        }
+
+        // Tombol Next
+        pagesHtml += `<button class="page-btn page-nav ${currentPage === totalPages ? "disabled" : ""}" id="nextPageBtn">Next <i class="fas fa-chevron-right"></i></button>`;
+
+        paginationContainer.innerHTML = pagesHtml;
+
+        // Event listener untuk tombol nomor halaman
+        document.querySelectorAll(".page-btn[data-page]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const page = parseInt(btn.dataset.page);
+            if (page !== currentPage) {
+              currentPage = page;
+              renderNews();
+              window.scrollTo({ top: 400, behavior: "smooth" });
+            }
+          });
+        });
+
+        // Event listener untuk tombol Back
+        const prevBtn = document.getElementById("prevPageBtn");
+        if (prevBtn && !prevBtn.classList.contains("disabled")) {
+          prevBtn.addEventListener("click", () => {
+            if (currentPage > 1) {
+              currentPage--;
+              renderNews();
+              window.scrollTo({ top: 400, behavior: "smooth" });
+            }
+          });
+        }
+
+        // Event listener untuk tombol Next
+        const nextBtn = document.getElementById("nextPageBtn");
+        if (nextBtn && !nextBtn.classList.contains("disabled")) {
+          nextBtn.addEventListener("click", () => {
+            if (currentPage < totalPages) {
+              currentPage++;
+              renderNews();
+              window.scrollTo({ top: 400, behavior: "smooth" });
+            }
+          });
+        }
+      }
+
+      function renderEvents() {
+        const grid = document.getElementById("eventsGrid");
+        grid.innerHTML = eventsData
+          .map(
+            (event) => `
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="day">${event.date}</span>
+                        <span class="month">${event.month}</span>
+                    </div>
+                    <div class="event-details">
+                        <h3>${event.title}</h3>
+                        <p>${event.description}</p>
+                        <div>
+                            <span class="event-time"><i class="far fa-clock"></i> ${event.time}</span>
+                            <span class="event-location"><i class="fas fa-map-marker-alt"></i> ${event.location}</span>
+                        </div>
+                        <button class="btn-event">Daftar Sekarang</button>
+                    </div>
+                </div>
+            `,
+          )
+          .join("");
+      }
+
+      function renderVideos() {
+        const grid = document.getElementById("videoGrid");
+        grid.innerHTML = videosData
+          .map(
+            (video) => `
+                <div class="video-card" data-video-id="${video.videoId}">
+                    <div class="video-thumbnail" style="background-image: url('${video.thumbnail}')">
+                        <div class="play-btn"><i class="fas fa-play"></i></div>
+                    </div>
+                    <div class="video-info">
+                        <h4>${video.title}</h4>
+                        <span class="video-duration"><i class="far fa-clock"></i> ${video.duration}</span>
+                    </div>
+                </div>
+            `,
+          )
+          .join("");
+
+        document.querySelectorAll(".video-card").forEach((card) => {
+          card.addEventListener("click", () => {
+            const videoId = card.dataset.videoId;
+            openVideoModal(videoId);
+          });
+        });
+      }
+
+      function openVideoModal(videoId) {
+        const modal = document.getElementById("videoModal");
+        const iframe = document.getElementById("videoIframe");
+        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+        modal.classList.add("active");
+      }
+
+      function closeVideoModal() {
+        const modal = document.getElementById("videoModal");
+        const iframe = document.getElementById("videoIframe");
+        iframe.src = "";
+        modal.classList.remove("active");
+      }
+
+      // Event Listeners
+      document.querySelectorAll(".filter-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".filter-btn")
+            .forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          currentFilter = btn.dataset.filter;
+          currentPage = 1;
+          renderNews();
+        });
+      });
+
+      document.getElementById("searchInput").addEventListener("input", (e) => {
+        currentSearch = e.target.value;
+        currentPage = 1;
+        renderNews();
+      });
+
+      // Fitur "Baca Selengkapnya" pada featured news (toggle)
+      const btnReadMore = document.getElementById("btnReadMore");
+      btnReadMore.addEventListener("click", () => {
+        const excerpt = document.getElementById("featuredExcerpt");
+        const fullContent = document.getElementById("featuredFullContent");
+
+        if (!isFullContentShown) {
+          excerpt.classList.add("hide");
+          fullContent.classList.add("show");
+          btnReadMore.innerHTML =
+            'Sembunyikan <i class="fas fa-chevron-up"></i>';
+          isFullContentShown = true;
+        } else {
+          excerpt.classList.remove("hide");
+          fullContent.classList.remove("show");
+          btnReadMore.innerHTML =
+            'Baca Selengkapnya <i class="fas fa-arrow-right"></i>';
+          isFullContentShown = false;
+        }
+      });
+
+      document
+        .getElementById("closeModal")
+        .addEventListener("click", closeVideoModal);
+      document.getElementById("videoModal").addEventListener("click", (e) => {
+        if (e.target === document.getElementById("videoModal"))
+          closeVideoModal();
+      });
+
+      document
+        .getElementById("newsletterForm")
+        .addEventListener("submit", (e) => {
+          e.preventDefault();
+          alert(
+            "Terima kasih! Email Anda telah terdaftar untuk menerima newsletter.",
+          );
+          e.target.reset();
+        });
+
+      // Initial render
+      renderNews();
+      renderEvents();
+      renderVideos();
+    </script>
+  </body>
+</html>

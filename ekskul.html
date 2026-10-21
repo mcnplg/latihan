@@ -1,0 +1,1348 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ekstrakurikuler - TechEdu | Pengembangan Bakat & Minat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        line-height: 1.6;
+        color: #2d2d2d;
+        background: #f9f9ff;
+      }
+
+      .container {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 0 30px;
+      }
+
+      /* Header */
+      .header {
+        background: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 30px;
+        max-width: 1300px;
+        margin: 0 auto;
+      }
+
+      .logo {
+        font-size: 28px;
+        font-weight: 800;
+        color: #5c2d91;
+        text-decoration: none;
+      }
+
+      .logo span {
+        color: #00adbc;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 30px;
+        list-style: none;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: #4a4a4a;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: #5c2d91;
+      }
+
+      .btn-login {
+        background: transparent;
+        border: 2px solid #5c2d91;
+        color: #5c2d91;
+        padding: 8px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .btn-login:hover {
+        background: #5c2d91;
+        color: white;
+      }
+
+      .btn-signup {
+        background: #5c2d91;
+        border: none;
+        color: white;
+        padding: 8px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .btn-signup:hover {
+        background: #7b46b3;
+      }
+
+      /* Page Hero */
+      .page-hero {
+        background: linear-gradient(135deg, #5c2d91 0%, #3a1c5c 100%);
+        color: white;
+        padding: 60px 0;
+        text-align: center;
+      }
+
+      .page-hero h1 {
+        font-size: 48px;
+        margin-bottom: 15px;
+      }
+
+      .page-hero p {
+        font-size: 18px;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      /* Stats Section */
+      .ekskul-stats {
+        padding: 50px 0;
+        background: white;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        text-align: center;
+      }
+
+      .stat-card {
+        padding: 30px;
+        background: #f9f9ff;
+        border-radius: 16px;
+        transition: transform 0.3s;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .stat-card i {
+        font-size: 48px;
+        color: #5c2d91;
+        margin-bottom: 15px;
+      }
+
+      .stat-card h3 {
+        font-size: 36px;
+        color: #5c2d91;
+        margin-bottom: 10px;
+      }
+
+      .stat-card p {
+        color: #666;
+      }
+
+      /* Category Filter */
+      .category-filter {
+        padding: 30px 0;
+        background: white;
+        border-bottom: 1px solid #e0e0e0;
+        position: sticky;
+        top: 80px;
+        z-index: 99;
+      }
+
+      .category-container {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+
+      .category-btn {
+        background: #f0f0f0;
+        border: none;
+        padding: 10px 25px;
+        border-radius: 30px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        color: #666;
+      }
+
+      .category-btn:hover,
+      .category-btn.active {
+        background: #5c2d91;
+        color: white;
+      }
+
+      /* Ekskul Grid */
+      .ekskul-section {
+        padding: 60px 0;
+        background: #f9f9ff;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .section-header h2 {
+        font-size: 36px;
+        margin-bottom: 15px;
+      }
+
+      .section-header p {
+        color: #666;
+        font-size: 18px;
+      }
+
+      .ekskul-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+      }
+
+      .ekskul-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+
+      .ekskul-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .ekskul-image {
+        height: 220px;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+      }
+
+      .ekskul-badge {
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        background: rgba(92, 45, 145, 0.9);
+        color: white;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .ekskul-content {
+        padding: 20px;
+      }
+
+      .ekskul-icon {
+        font-size: 40px;
+        color: #5c2d91;
+        margin-bottom: 10px;
+      }
+
+      .ekskul-title {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+
+      .ekskul-description {
+        color: #666;
+        font-size: 14px;
+        margin-bottom: 15px;
+        line-height: 1.6;
+      }
+
+      .ekskul-schedule {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 15px;
+        font-size: 13px;
+        color: #888;
+      }
+
+      .ekskul-schedule i {
+        color: #00adbc;
+      }
+
+      .ekskul-members {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 15px;
+        border-top: 1px solid #f0f0f0;
+      }
+
+      .member-count {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 13px;
+        color: #888;
+      }
+
+      .btn-join {
+        background: transparent;
+        border: 1px solid #5c2d91;
+        color: #5c2d91;
+        padding: 6px 15px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .btn-join:hover {
+        background: #5c2d91;
+        color: white;
+      }
+
+      /* Achievement Section */
+      .achievement-section {
+        padding: 60px 0;
+        background: white;
+      }
+
+      .achievement-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+      }
+
+      .achievement-card {
+        text-align: center;
+        padding: 30px;
+        background: #f9f9ff;
+        border-radius: 16px;
+        transition: all 0.3s;
+      }
+
+      .achievement-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .achievement-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #5c2d91, #7b46b3);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+      }
+
+      .achievement-icon i {
+        font-size: 36px;
+        color: white;
+      }
+
+      .achievement-card h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+        color: #5c2d91;
+      }
+
+      .achievement-card p {
+        color: #666;
+        font-size: 14px;
+      }
+
+      /* Gallery Section */
+      .gallery-section {
+        padding: 60px 0;
+        background: #f9f9ff;
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+
+      .gallery-item {
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+        cursor: pointer;
+        aspect-ratio: 1;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.05);
+      }
+
+      .gallery-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+        padding: 15px;
+        color: white;
+        font-size: 12px;
+        transform: translateY(100%);
+        transition: transform 0.3s;
+      }
+
+      .gallery-item:hover .gallery-overlay {
+        transform: translateY(0);
+      }
+
+      /* Modal for Gallery */
+      .gallery-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 2000;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .gallery-modal.active {
+        display: flex;
+      }
+
+      .modal-img {
+        max-width: 90%;
+        max-height: 80%;
+        border-radius: 10px;
+      }
+
+      .close-gallery {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: white;
+        font-size: 40px;
+        cursor: pointer;
+      }
+
+      /* Schedule Table */
+      .schedule-section {
+        padding: 60px 0;
+        background: white;
+      }
+
+      .schedule-table {
+        width: 100%;
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .schedule-table table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .schedule-table th {
+        background: #5c2d91;
+        color: white;
+        padding: 15px;
+        text-align: left;
+        font-weight: 600;
+      }
+
+      .schedule-table td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #f0f0f0;
+      }
+
+      .schedule-table tr:hover {
+        background: #f9f9ff;
+      }
+
+      .schedule-day {
+        font-weight: 700;
+        color: #5c2d91;
+      }
+
+      /* Registration CTA */
+      .registration-cta {
+        padding: 60px 0;
+        background: linear-gradient(135deg, #5c2d91, #3a1c5c);
+        color: white;
+        text-align: center;
+      }
+
+      .registration-cta h2 {
+        font-size: 36px;
+        margin-bottom: 15px;
+      }
+
+      .registration-cta p {
+        margin-bottom: 30px;
+        opacity: 0.9;
+      }
+
+      .btn-register {
+        background: #00adbc;
+        color: white;
+        border: none;
+        padding: 14px 40px;
+        border-radius: 10px;
+        font-size: 18px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.3s;
+      }
+
+      .btn-register:hover {
+        transform: translateY(-2px);
+        background: #008b9a;
+      }
+
+      /* Footer */
+      .footer {
+        background: #1a1a2e;
+        color: #aaa;
+        padding: 60px 0 30px;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-logo {
+        font-size: 24px;
+        font-weight: 800;
+        color: white;
+        text-decoration: none;
+        margin-bottom: 15px;
+        display: inline-block;
+      }
+
+      .footer-logo span {
+        color: #00adbc;
+      }
+
+      .footer-about p {
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .footer-social {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .footer-social a {
+        color: #aaa;
+        font-size: 20px;
+        transition: color 0.3s;
+      }
+
+      .footer-social a:hover {
+        color: #00adbc;
+      }
+
+      .footer-links h4 {
+        color: white;
+        margin-bottom: 20px;
+        font-size: 18px;
+      }
+
+      .footer-links ul {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+
+      .footer-links a {
+        color: #aaa;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-links a:hover {
+        color: #00adbc;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 30px;
+        border-top: 1px solid #333;
+      }
+
+      /* Responsive */
+      @media (max-width: 968px) {
+        .stats-grid,
+        .achievement-grid,
+        .gallery-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .ekskul-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .footer-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-container {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .nav-links {
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 20px;
+        }
+
+        .page-hero h1 {
+          font-size: 32px;
+        }
+
+        .stats-grid,
+        .achievement-grid,
+        .gallery-grid,
+        .ekskul-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .schedule-table {
+          overflow-x: auto;
+          display: block;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .footer-social {
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav-container">
+        <a href="#" class="logo">Tech<span>Edu</span></a>
+
+        <ul class="nav-links">
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="kursus.html">Kursus</a></li>
+          <li><a href="guru.html">Guru</a></li>
+          <li><a href="tentang.html">Tentang</a></li>
+          <li><a href="berita.html">Berita</a></li>
+          <li><a href="ekskul.html" class="active">Ekstrakurikuler</a></li>
+        </ul>
+
+        <div>
+          <button class="btn-login">Masuk</button>
+          <button class="btn-signup">Daftar</button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <h1>Ekstrakurikuler</h1>
+        <p>
+          Kembangkan bakat dan minat melalui berbagai kegiatan seru di TechEdu
+        </p>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="ekskul-stats">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <i class="fas fa-users"></i>
+            <h3>15+</h3>
+            <p>Ekstrakurikuler Aktif</p>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-user-graduate"></i>
+            <h3>850+</h3>
+            <p>Siswa Aktif</p>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-trophy"></i>
+            <h3>120+</h3>
+            <p>Penghargaan</p>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-chalkboard-user"></i>
+            <h3>25+</h3>
+            <p>Pembina Profesional</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Category Filter -->
+    <section class="category-filter">
+      <div class="container">
+        <div class="category-container">
+          <button class="category-btn active" data-category="all">Semua</button>
+          <button class="category-btn" data-category="keagamaan">
+            Keagamaan
+          </button>
+          <button class="category-btn" data-category="olahraga">
+            Olahraga & Bela Diri
+          </button>
+          <button class="category-btn" data-category="seni">
+            Seni & Budaya
+          </button>
+          <button class="category-btn" data-category="akademik">
+            Akademik & Teknologi
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ekskul Grid -->
+    <section class="ekskul-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Ekstrakurikuler Kami</h2>
+          <p>Pilih kegiatan yang sesuai dengan minat dan bakat Anda</p>
+        </div>
+        <div class="ekskul-grid" id="ekskulGrid">
+          <!-- Ekskul cards will be populated by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Achievement Section -->
+    <section class="achievement-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Prestasi Ekstrakurikuler</h2>
+          <p>Berbagai penghargaan yang telah diraih oleh siswa-siswi TechEdu</p>
+        </div>
+        <div class="achievement-grid">
+          <div class="achievement-card">
+            <div class="achievement-icon">
+              <i class="fas fa-trophy"></i>
+            </div>
+            <h3>Juara 1 MTQ Tingkat Kota</h3>
+            <p>2024 - Tim Tahfiz & Hadroh</p>
+          </div>
+          <div class="achievement-card">
+            <div class="achievement-icon">
+              <i class="fas fa-medal"></i>
+            </div>
+            <h3>Juara 2 Pencak Silat POPDA</h3>
+            <p>2024 - Tim Pencak Silat</p>
+          </div>
+          <div class="achievement-card">
+            <div class="achievement-icon">
+              <i class="fas fa-award"></i>
+            </div>
+            <h3>Juara Umum LKBB</h3>
+            <p>2023 - Tim Pramuka</p>
+          </div>
+          <div class="achievement-card">
+            <div class="achievement-icon">
+              <i class="fas fa-microchip"></i>
+            </div>
+            <h3>Juara 1 Robotik Nasional</h3>
+            <p>2024 - Tim Robotik</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section class="schedule-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Jadwal Kegiatan</h2>
+          <p>Rutinitas latihan ekstrakurikuler setiap minggunya</p>
+        </div>
+        <div class="schedule-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Hari</th>
+                <th>Ekstrakurikuler</th>
+                <th>Waktu</th>
+                <th>Tempat</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="schedule-day">Senin</td>
+                <td>Pramuka</td>
+                <td>15:00 - 17:00</td>
+                <td>Lapangan Upacara</td>
+              </tr>
+              <tr>
+                <td class="schedule-day">Selasa</td>
+                <td>Hadroh / Rebana</td>
+                <td>15:00 - 16:30</td>
+                <td>Ruang Serbaguna</td>
+              </tr>
+              <tr>
+                <td class="schedule-day">Rabu</td>
+                <td>Pencak Silat</td>
+                <td>15:00 - 17:00</td>
+                <td>GOR Olahraga</td>
+              </tr>
+              <tr>
+                <td class="schedule-day">Kamis</td>
+                <td>Tahfiz Qur'an</td>
+                <td>15:00 - 16:30</td>
+                <td>Masjid Sekolah</td>
+              </tr>
+              <tr>
+                <td class="schedule-day">Jumat</td>
+                <td>Robotik & Coding Club</td>
+                <td>13:30 - 15:30</td>
+                <td>Lab Komputer</td>
+              </tr>
+              <tr>
+                <td class="schedule-day">Sabtu</td>
+                <td>Futsal & Basket</td>
+                <td>08:00 - 10:00</td>
+                <td>Lapangan Olahraga</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Galeri Kegiatan</h2>
+          <p>Dokumentasi seru kegiatan ekstrakurikuler TechEdu</p>
+        </div>
+        <div class="gallery-grid" id="galleryGrid">
+          <!-- Gallery images will be populated by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Modal -->
+    <div class="gallery-modal" id="galleryModal">
+      <span class="close-gallery" id="closeGallery">&times;</span>
+      <img class="modal-img" id="modalImage" src="" />
+    </div>
+
+    <!-- Registration CTA -->
+    <section class="registration-cta">
+      <div class="container">
+        <h2>Bergabunglah Sekarang!</h2>
+        <p>Daftarkan diri Anda untuk mengikuti ekstrakurikuler favorit</p>
+        <button class="btn-register" id="openRegisterModal">
+          Daftar Ekstrakurikuler <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- Registration Modal -->
+    <div class="gallery-modal" id="registerModal" style="display: none">
+      <div
+        style="
+          background: white;
+          padding: 30px;
+          border-radius: 20px;
+          max-width: 500px;
+          width: 90%;
+          position: relative;
+        "
+      >
+        <span
+          class="close-gallery"
+          id="closeRegister"
+          style="color: #333; top: 10px; right: 20px"
+          >&times;</span
+        >
+        <h3 style="color: #5c2d91; margin-bottom: 20px">
+          Form Pendaftaran Ekstrakurikuler
+        </h3>
+        <form id="registerForm">
+          <div style="margin-bottom: 15px">
+            <input
+              type="text"
+              placeholder="Nama Lengkap"
+              required
+              style="
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+              "
+            />
+          </div>
+          <div style="margin-bottom: 15px">
+            <input
+              type="email"
+              placeholder="Email"
+              required
+              style="
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+              "
+            />
+          </div>
+          <div style="margin-bottom: 15px">
+            <select
+              required
+              style="
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+              "
+            >
+              <option value="">Pilih Ekstrakurikuler</option>
+              <option>Tahfiz Qur'an</option>
+              <option>Pencak Silat</option>
+              <option>Hadroh / Rebana</option>
+              <option>Pramuka</option>
+              <option>Robotik & Coding Club</option>
+              <option>Futsal</option>
+              <option>Basket</option>
+            </select>
+          </div>
+          <div style="margin-bottom: 15px">
+            <input
+              type="text"
+              placeholder="Nomor WhatsApp"
+              style="
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+              "
+            />
+          </div>
+          <button
+            type="submit"
+            style="
+              background: #5c2d91;
+              color: white;
+              border: none;
+              padding: 12px;
+              width: 100%;
+              border-radius: 8px;
+              font-weight: 600;
+              cursor: pointer;
+            "
+          >
+            Daftar Sekarang
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-about">
+            <a href="#" class="footer-logo">Tech<span>Edu</span></a>
+            <p>
+              Misi kami adalah membuat pendidikan teknologi berkualitas tinggi
+              dapat diakses oleh semua orang, di mana pun mereka berada.
+            </p>
+            <div class="footer-social">
+              <a href="#"><i class="fab fa-facebook"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Ekstrakurikuler</h4>
+            <ul>
+              <li><a href="#">Tahfiz Qur'an</a></li>
+              <li><a href="#">Pencak Silat</a></li>
+              <li><a href="#">Hadroh</a></li>
+              <li><a href="#">Pramuka</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Informasi</h4>
+            <ul>
+              <li><a href="#">Tentang Kami</a></li>
+              <li><a href="#">Jadwal</a></li>
+              <li><a href="#">Pendaftaran</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Kontak</h4>
+            <ul>
+              <li><a href="#">+62 21 1234 5678</a></li>
+              <li><a href="#">info@techedu.com</a></li>
+              <li><a href="#">Jl. Teknologi No. 123</a></li>
+              <li><a href="#">Jakarta Selatan</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            &copy; 2024 TechEdu. Semua hak dilindungi. Memberdayakan generasi
+            masa depan melalui teknologi.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Data Ekstrakurikuler
+      const ekskulData = [
+        {
+          id: 1,
+          name: "Tahfiz Qur'an",
+          category: "keagamaan",
+          icon: "fas fa-quran",
+          description:
+            "Program menghafal Al-Qur'an dengan metode tahfiz yang menyenangkan. Target hafalan juz 30 hingga 1 juz.",
+          schedule: "Kamis, 15:00 - 16:30",
+          members: 85,
+          image:
+            "https://images.unsplash.com/photo-1584551246679-258d75b120e8?w=400",
+          color: "#2e7d32",
+        },
+        {
+          id: 2,
+          name: "Pencak Silat",
+          category: "olahraga",
+          icon: "fas fa-fist-raised",
+          description:
+            "Latihan pencak silat untuk membentuk karakter disiplin, percaya diri, dan kemampuan bela diri. Terbuka untuk putra & putri.",
+          schedule: "Rabu, 15:00 - 17:00",
+          members: 120,
+          image:
+            "https://images.unsplash.com/photo-1555597673-b21d5c935865?w=400",
+          color: "#d32f2f",
+        },
+        {
+          id: 3,
+          name: "Hadroh / Rebana",
+          category: "keagamaan",
+          icon: "fas fa-drum",
+          description:
+            "Kesenian islami dengan alat musik rebana. Latihan vokal dan irama untuk penampilan di acara-acara keagamaan.",
+          schedule: "Selasa, 15:00 - 16:30",
+          members: 65,
+          image:
+            "https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?w=400",
+          color: "#ff9800",
+        },
+        {
+          id: 4,
+          name: "Pramuka",
+          category: "olahraga",
+          icon: "fas fa-campground",
+          description:
+            "Kegiatan kepramukaan untuk membentuk jiwa kepemimpinan, kemandirian, dan cinta alam.",
+          schedule: "Senin, 15:00 - 17:00",
+          members: 150,
+          image:
+            "https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=400",
+          color: "#4caf50",
+        },
+        {
+          id: 5,
+          name: "Robotik & Coding",
+          category: "akademik",
+          icon: "fas fa-microchip",
+          description:
+            "Belajar merakit robot dan pemrograman. Ikuti berbagai kompetisi robotik tingkat nasional.",
+          schedule: "Jumat, 13:30 - 15:30",
+          members: 95,
+          image:
+            "https://images.unsplash.com/photo-1535378917042-10a22c959e6e?w=400",
+          color: "#2196f3",
+        },
+        {
+          id: 6,
+          name: "Futsal",
+          category: "olahraga",
+          icon: "fas fa-futbol",
+          description:
+            "Latihan futsal rutin untuk mengembangkan skill bermain bola dan kerjasama tim.",
+          schedule: "Sabtu, 08:00 - 10:00",
+          members: 110,
+          image:
+            "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=400",
+          color: "#ff5722",
+        },
+        {
+          id: 7,
+          name: "Basket",
+          category: "olahraga",
+          icon: "fas fa-basketball-ball",
+          description:
+            "Latihan bola basket untuk mengembangkan kemampuan fisik dan strategi tim.",
+          schedule: "Sabtu, 08:00 - 10:00",
+          members: 85,
+          image:
+            "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400",
+          color: "#ff9800",
+        },
+        {
+          id: 8,
+          name: "English Club",
+          category: "akademik",
+          icon: "fas fa-language",
+          description:
+            "Meningkatkan kemampuan berbahasa Inggris melalui diskusi, debat, dan games.",
+          schedule: "Rabu, 15:00 - 16:30",
+          members: 75,
+          image:
+            "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=400",
+          color: "#00bcd4",
+        },
+        {
+          id: 9,
+          name: "Paduan Suara",
+          category: "seni",
+          icon: "fas fa-microphone-alt",
+          description:
+            "Latihan vokal untuk mengembangkan bakat menyanyi dan tampil di berbagai acara.",
+          schedule: "Kamis, 15:00 - 16:30",
+          members: 55,
+          image:
+            "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=400",
+          color: "#e91e63",
+        },
+      ];
+
+      // Gallery Images
+      const galleryImages = [
+        "https://images.unsplash.com/photo-1584551246679-258d75b120e8?w=300",
+        "https://images.unsplash.com/photo-1555597673-b21d5c935865?w=300",
+        "https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?w=300",
+        "https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=300",
+        "https://images.unsplash.com/photo-1535378917042-10a22c959e6e?w=300",
+        "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=300",
+        "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=300",
+        "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=300",
+      ];
+
+      let currentCategory = "all";
+
+      function renderEkskul() {
+        let filtered = [...ekskulData];
+        if (currentCategory !== "all") {
+          filtered = filtered.filter((e) => e.category === currentCategory);
+        }
+
+        const grid = document.getElementById("ekskulGrid");
+        if (filtered.length === 0) {
+          grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 60px;"><i class="fas fa-folder-open" style="font-size: 48px; color: #ccc;"></i><h3>Tidak ada ekstrakurikuler ditemukan</h3></div>`;
+          return;
+        }
+
+        grid.innerHTML = filtered
+          .map(
+            (ekskul) => `
+                <div class="ekskul-card">
+                    <div class="ekskul-image" style="background-image: url('${ekskul.image}')">
+                        <span class="ekskul-badge">${ekskul.members} Anggota</span>
+                    </div>
+                    <div class="ekskul-content">
+                        <i class="${ekskul.icon} ekskul-icon"></i>
+                        <h3 class="ekskul-title">${ekskul.name}</h3>
+                        <p class="ekskul-description">${ekskul.description}</p>
+                        <div class="ekskul-schedule">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>${ekskul.schedule}</span>
+                        </div>
+                        <div class="ekskul-members">
+                            <span class="member-count"><i class="fas fa-users"></i> ${ekskul.members} anggota</span>
+                            <button class="btn-join" data-ekskul="${ekskul.name}">Gabung <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            `,
+          )
+          .join("");
+
+        // Add event listeners to join buttons
+        document.querySelectorAll(".btn-join").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const ekskulName = btn.dataset.ekskul;
+            openRegisterModalWithEkskul(ekskulName);
+          });
+        });
+      }
+
+      function renderGallery() {
+        const grid = document.getElementById("galleryGrid");
+        grid.innerHTML = galleryImages
+          .map(
+            (img, index) => `
+                <div class="gallery-item" data-index="${index}">
+                    <img src="${img}" alt="Kegiatan Ekskul ${index + 1}">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i> Lihat
+                    </div>
+                </div>
+            `,
+          )
+          .join("");
+
+        document.querySelectorAll(".gallery-item").forEach((item) => {
+          item.addEventListener("click", () => {
+            const index = parseInt(item.dataset.index);
+            openGalleryModal(galleryImages[index]);
+          });
+        });
+      }
+
+      function openGalleryModal(imgSrc) {
+        const modal = document.getElementById("galleryModal");
+        const modalImg = document.getElementById("modalImage");
+        modalImg.src = imgSrc;
+        modal.classList.add("active");
+      }
+
+      function closeGalleryModal() {
+        const modal = document.getElementById("galleryModal");
+        modal.classList.remove("active");
+      }
+
+      function openRegisterModalWithEkskul(ekskulName) {
+        const modal = document.getElementById("registerModal");
+        const select = modal.querySelector("select");
+        if (select && ekskulName) {
+          for (let i = 0; i < select.options.length; i++) {
+            if (select.options[i].text === ekskulName) {
+              select.selectedIndex = i;
+              break;
+            }
+          }
+        }
+        modal.style.display = "flex";
+      }
+
+      // Category filter event listeners
+      document.querySelectorAll(".category-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".category-btn")
+            .forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          currentCategory = btn.dataset.category;
+          renderEkskul();
+        });
+      });
+
+      // Modal close handlers
+      document
+        .getElementById("closeGallery")
+        .addEventListener("click", closeGalleryModal);
+      document.getElementById("galleryModal").addEventListener("click", (e) => {
+        if (e.target === document.getElementById("galleryModal"))
+          closeGalleryModal();
+      });
+
+      document
+        .getElementById("openRegisterModal")
+        .addEventListener("click", () => {
+          const modal = document.getElementById("registerModal");
+          modal.style.display = "flex";
+        });
+
+      document.getElementById("closeRegister").addEventListener("click", () => {
+        document.getElementById("registerModal").style.display = "none";
+      });
+
+      document
+        .getElementById("registerModal")
+        .addEventListener("click", (e) => {
+          if (e.target === document.getElementById("registerModal")) {
+            document.getElementById("registerModal").style.display = "none";
+          }
+        });
+
+      document
+        .getElementById("registerForm")
+        .addEventListener("submit", (e) => {
+          e.preventDefault();
+          alert(
+            "Terima kasih! Pendaftaran Anda telah dikirim. Kami akan menghubungi Anda segera.",
+          );
+          document.getElementById("registerModal").style.display = "none";
+          e.target.reset();
+        });
+
+      // Initial render
+      renderEkskul();
+      renderGallery();
+    </script>
+  </body>
+</html>

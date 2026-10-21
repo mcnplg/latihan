@@ -1,0 +1,1125 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tentang Kami - Platform Edukasi Teknologi | TechEdu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <!-- Leaflet CSS untuk Peta -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        line-height: 1.6;
+        color: #2d2d2d;
+        background: #f9f9ff;
+      }
+
+      .container {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 0 30px;
+      }
+
+      /* Header */
+      .header {
+        background: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 30px;
+        max-width: 1300px;
+        margin: 0 auto;
+      }
+
+      .logo {
+        font-size: 28px;
+        font-weight: 800;
+        color: #5c2d91;
+        text-decoration: none;
+      }
+
+      .logo span {
+        color: #00adbc;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 30px;
+        list-style: none;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: #4a4a4a;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: #5c2d91;
+      }
+
+      .btn-login {
+        background: transparent;
+        border: 2px solid #5c2d91;
+        color: #5c2d91;
+        padding: 8px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .btn-login:hover {
+        background: #5c2d91;
+        color: white;
+      }
+
+      .btn-signup {
+        background: #5c2d91;
+        border: none;
+        color: white;
+        padding: 8px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .btn-signup:hover {
+        background: #7b46b3;
+      }
+
+      /* Page Hero */
+      .page-hero {
+        background: linear-gradient(135deg, #5c2d91 0%, #3a1c5c 100%);
+        color: white;
+        padding: 60px 0;
+        text-align: center;
+      }
+
+      .page-hero h1 {
+        font-size: 48px;
+        margin-bottom: 15px;
+      }
+
+      .page-hero p {
+        font-size: 18px;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      /* Mission Vision Section */
+      .mission-vision {
+        padding: 80px 0;
+        background: white;
+      }
+
+      .mv-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+      }
+
+      .mv-card {
+        background: #f9f9ff;
+        padding: 40px;
+        border-radius: 20px;
+        text-align: center;
+        transition: transform 0.3s;
+      }
+
+      .mv-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .mv-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #5c2d91, #7b46b3);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+      }
+
+      .mv-icon i {
+        font-size: 40px;
+        color: white;
+      }
+
+      .mv-card h3 {
+        font-size: 28px;
+        margin-bottom: 15px;
+        color: #5c2d91;
+      }
+
+      .mv-card p {
+        color: #666;
+        line-height: 1.8;
+      }
+
+      /* About Story */
+      .about-story {
+        padding: 80px 0;
+        background: #f9f9ff;
+      }
+
+      .story-content {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+      }
+
+      .story-text {
+        flex: 1;
+      }
+
+      .story-text h2 {
+        font-size: 36px;
+        margin-bottom: 20px;
+        color: #2d2d2d;
+      }
+
+      .story-text p {
+        color: #666;
+        margin-bottom: 20px;
+        line-height: 1.8;
+      }
+
+      .story-stats {
+        display: flex;
+        gap: 30px;
+        margin-top: 30px;
+      }
+
+      .story-stat {
+        text-align: center;
+      }
+
+      .story-stat h4 {
+        font-size: 32px;
+        color: #5c2d91;
+      }
+
+      .story-stat p {
+        font-size: 14px;
+        margin-bottom: 0;
+      }
+
+      .story-image {
+        flex: 1;
+      }
+
+      .story-image img {
+        width: 100%;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Values Section */
+      .values {
+        padding: 80px 0;
+        background: white;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .section-header h2 {
+        font-size: 36px;
+        margin-bottom: 15px;
+      }
+
+      .section-header p {
+        color: #666;
+        font-size: 18px;
+      }
+
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+      }
+
+      .value-card {
+        text-align: center;
+        padding: 30px;
+        background: #f9f9ff;
+        border-radius: 16px;
+        transition: all 0.3s;
+      }
+
+      .value-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .value-icon {
+        font-size: 48px;
+        color: #5c2d91;
+        margin-bottom: 15px;
+      }
+
+      .value-card h3 {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      .value-card p {
+        color: #666;
+        font-size: 14px;
+      }
+
+      /* Team Section */
+      .team {
+        padding: 80px 0;
+        background: #f9f9ff;
+      }
+
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+      }
+
+      .team-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        text-align: center;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s;
+      }
+
+      .team-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .team-photo {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+      }
+
+      .team-info {
+        padding: 20px;
+      }
+
+      .team-info h3 {
+        font-size: 18px;
+        margin-bottom: 5px;
+      }
+
+      .team-role {
+        color: #5c2d91;
+        font-weight: 600;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+
+      .team-social {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 15px;
+      }
+
+      .team-social a {
+        color: #aaa;
+        transition: color 0.3s;
+      }
+
+      .team-social a:hover {
+        color: #5c2d91;
+      }
+
+      /* Contact Section */
+      .contact-section {
+        padding: 80px 0;
+        background: white;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+      }
+
+      .contact-info {
+        background: #f9f9ff;
+        padding: 40px;
+        border-radius: 20px;
+      }
+
+      .contact-info h3 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #5c2d91;
+      }
+
+      .contact-detail {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 25px;
+      }
+
+      .contact-detail i {
+        width: 45px;
+        height: 45px;
+        background: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #5c2d91;
+        font-size: 20px;
+      }
+
+      .contact-detail h4 {
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+
+      .contact-detail p {
+        color: #666;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 30px;
+      }
+
+      .social-link {
+        width: 40px;
+        height: 40px;
+        background: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #5c2d91;
+        text-decoration: none;
+        transition: all 0.3s;
+      }
+
+      .social-link:hover {
+        background: #5c2d91;
+        color: white;
+        transform: translateY(-3px);
+      }
+
+      /* Contact Form */
+      .contact-form {
+        background: #f9f9ff;
+        padding: 40px;
+        border-radius: 20px;
+      }
+
+      .contact-form h3 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #5c2d91;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 14px 16px;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        font-size: 14px;
+        font-family: inherit;
+        transition: border 0.3s;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: #5c2d91;
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      .btn-submit {
+        background: #5c2d91;
+        color: white;
+        border: none;
+        padding: 14px 30px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s;
+        width: 100%;
+      }
+
+      .btn-submit:hover {
+        background: #7b46b3;
+      }
+
+      /* Map Section */
+      .map-section {
+        padding: 0 0 80px 0;
+        background: white;
+      }
+
+      .map-container {
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      #map {
+        height: 400px;
+        width: 100%;
+      }
+
+      /* Partners Section */
+      .partners {
+        padding: 80px 0;
+        background: #f9f9ff;
+      }
+
+      .partners-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 30px;
+        align-items: center;
+      }
+
+      .partner-logo {
+        text-align: center;
+        padding: 20px;
+        background: white;
+        border-radius: 12px;
+        transition: all 0.3s;
+      }
+
+      .partner-logo:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .partner-logo i {
+        font-size: 48px;
+        color: #5c2d91;
+      }
+
+      .partner-logo p {
+        margin-top: 10px;
+        font-weight: 600;
+        color: #666;
+      }
+
+      /* Footer */
+      .footer {
+        background: #1a1a2e;
+        color: #aaa;
+        padding: 60px 0 30px;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-logo {
+        font-size: 24px;
+        font-weight: 800;
+        color: white;
+        text-decoration: none;
+        margin-bottom: 15px;
+        display: inline-block;
+      }
+
+      .footer-logo span {
+        color: #00adbc;
+      }
+
+      .footer-about p {
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .footer-social {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .footer-social a {
+        color: #aaa;
+        font-size: 20px;
+        transition: color 0.3s;
+      }
+
+      .footer-social a:hover {
+        color: #00adbc;
+      }
+
+      .footer-links h4 {
+        color: white;
+        margin-bottom: 20px;
+        font-size: 18px;
+      }
+
+      .footer-links ul {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+
+      .footer-links a {
+        color: #aaa;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-links a:hover {
+        color: #00adbc;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 30px;
+        border-top: 1px solid #333;
+      }
+
+      /* Responsive */
+      @media (max-width: 968px) {
+        .mv-grid,
+        .story-content,
+        .contact-grid {
+          flex-direction: column;
+          grid-template-columns: 1fr;
+        }
+
+        .values-grid,
+        .team-grid,
+        .partners-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .footer-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-container {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .nav-links {
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 20px;
+        }
+
+        .page-hero h1 {
+          font-size: 32px;
+        }
+
+        .values-grid,
+        .team-grid,
+        .partners-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .story-stats {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .footer-social {
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav-container">
+        <a href="#" class="logo">Tech<span>Edu</span></a>
+
+        <ul class="nav-links">
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="kursus.html">Kursus</a></li>
+          <li><a href="guru.html">Guru</a></li>
+          <li><a href="tentang.html" class="active">Tentang</a></li>
+          <li><a href="berita.html">Berita</a></li>
+          <li><a href="ekskul.html">Ekstrakurikuler</a></li>
+        </ul>
+
+        <div>
+          <button class="btn-login">Masuk</button>
+          <button class="btn-signup">Daftar</button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <h1>Tentang TechEdu</h1>
+        <p>
+          Memberdayakan generasi masa depan melalui pendidikan teknologi
+          berkualitas
+        </p>
+      </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="mission-vision">
+      <div class="container">
+        <div class="mv-grid">
+          <div class="mv-card">
+            <div class="mv-icon">
+              <i class="fas fa-bullseye"></i>
+            </div>
+            <h3>Visi Kami</h3>
+            <p>
+              Menjadi platform pendidikan teknologi terdepan di Asia Tenggara
+              yang memberdayakan setiap individu untuk menguasai keterampilan
+              digital dan AI, menciptakan masa depan yang lebih cerah dan
+              inklusif.
+            </p>
+          </div>
+          <div class="mv-card">
+            <div class="mv-icon">
+              <i class="fas fa-flag-checkered"></i>
+            </div>
+            <h3>Misi Kami</h3>
+            <p>
+              Menyediakan akses pendidikan coding dan AI berkualitas tinggi
+              untuk semua kalangan, memberdayakan guru dengan sumber daya
+              terbaik, dan menciptakan ekosistem belajar yang inovatif.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Story -->
+    <section class="about-story">
+      <div class="container">
+        <div class="story-content">
+          <div class="story-text">
+            <h2>Perjalanan TechEdu</h2>
+            <p>
+              TechEdu didirikan pada tahun 2018 dengan misi sederhana: membuat
+              pendidikan teknologi dapat diakses oleh semua orang. Dimulai dari
+              sekel kecil pengajar yang peduli dengan kesenjangan digital di
+              Indonesia, kami kini telah berkembang menjadi platform edukasi
+              terpercaya dengan ribuan siswa dan guru.
+            </p>
+            <p>
+              Kami percaya bahwa setiap orang berhak mendapatkan pendidikan
+              teknologi berkualitas, tanpa memandang latar belakang ekonomi atau
+              geografis. Melalui kurikulum yang inovatif dan metode pengajaran
+              yang engaging, kami telah membantu ribuan siswa memulai perjalanan
+              mereka di dunia teknologi.
+            </p>
+            <div class="story-stats">
+              <div class="story-stat">
+                <h4>2018</h4>
+                <p>Tahun Berdiri</p>
+              </div>
+              <div class="story-stat">
+                <h4>50K+</h4>
+                <p>Siswa Terdaftar</p>
+              </div>
+              <div class="story-stat">
+                <h4>100+</h4>
+                <p>Kursus Tersedia</p>
+              </div>
+            </div>
+          </div>
+          <div class="story-image">
+            <img
+              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600"
+              alt="Team TechEdu"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Values -->
+    <section class="values">
+      <div class="container">
+        <div class="section-header">
+          <h2>Nilai-Nilai Kami</h2>
+          <p>Prinsip yang menjadi fondasi dalam setiap langkah kami</p>
+        </div>
+        <div class="values-grid">
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-hand-holding-heart"></i>
+            </div>
+            <h3>Inklusivitas</h3>
+            <p>Pendidikan untuk semua, tanpa terkecuali</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <h3>Inovasi</h3>
+            <p>Terus berinovasi dalam metode pembelajaran</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <h3>Kolaborasi</h3>
+            <p>Bersama membangun ekosistem yang kuat</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>Ekselensi</h3>
+            <p>Komitmen pada kualitas terbaik</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Leadership Team -->
+    <section class="team">
+      <div class="container">
+        <div class="section-header">
+          <h2>Tim Kepemimpinan</h2>
+          <p>
+            Para profesional yang berdedikasi memajukan pendidikan teknologi
+          </p>
+        </div>
+        <div class="team-grid">
+          <div class="team-card">
+            <img
+              src="https://randomuser.me/api/portraits/men/42.jpg"
+              alt="CEO"
+              class="team-photo"
+            />
+            <div class="team-info">
+              <h3>Dr. Andi Wijaya</h3>
+              <div class="team-role">Founder & CEO</div>
+              <div class="team-social">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-card">
+            <img
+              src="https://randomuser.me/api/portraits/women/55.jpg"
+              alt="CTO"
+              class="team-photo"
+            />
+            <div class="team-info">
+              <h3>Dr. Maya Sari, Ph.D</h3>
+              <div class="team-role">Chief Technology Officer</div>
+              <div class="team-social">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-card">
+            <img
+              src="https://randomuser.me/api/portraits/men/33.jpg"
+              alt="COO"
+              class="team-photo"
+            />
+            <div class="team-info">
+              <h3>Budi Santoso, MBA</h3>
+              <div class="team-role">Chief Operating Officer</div>
+              <div class="team-social">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-card">
+            <img
+              src="https://randomuser.me/api/portraits/women/68.jpg"
+              alt="CKO"
+              class="team-photo"
+            />
+            <div class="team-info">
+              <h3>Sarah Setiawan, M.Pd</h3>
+              <div class="team-role">Chief Knowledge Officer</div>
+              <div class="team-social">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partners -->
+    <section class="partners">
+      <div class="container">
+        <div class="section-header">
+          <h2>Mitra Kami</h2>
+          <p>Berkolaborasi dengan institusi terkemuka</p>
+        </div>
+        <div class="partners-grid">
+          <div class="partner-logo">
+            <i class="fab fa-google"></i>
+            <p>Google Edu</p>
+          </div>
+          <div class="partner-logo">
+            <i class="fab fa-microsoft"></i>
+            <p>Microsoft</p>
+          </div>
+          <div class="partner-logo">
+            <i class="fab fa-aws"></i>
+            <p>AWS Educate</p>
+          </div>
+          <div class="partner-logo">
+            <i class="fas fa-university"></i>
+            <p>UI</p>
+          </div>
+          <div class="partner-logo">
+            <i class="fas fa-school"></i>
+            <p>ITB</p>
+          </div>
+          <div class="partner-logo">
+            <i class="fab fa-meta"></i>
+            <p>Meta</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact & Map Section -->
+    <section class="contact-section">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h3><i class="fas fa-map-marker-alt"></i> Kunjungi Kami</h3>
+            <div class="contact-detail">
+              <i class="fas fa-location-dot"></i>
+              <div>
+                <h4>Alamat Kantor Pusat</h4>
+                <p>
+                  TechEdu Tower, Jalan Teknologi No. 123<br />Jakarta Selatan
+                  12345, Indonesia
+                </p>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <i class="fas fa-phone"></i>
+              <div>
+                <h4>Telepon</h4>
+                <p>+62 21 1234 5678<br />+62 812 3456 7890</p>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <i class="fas fa-envelope"></i>
+              <div>
+                <h4>Email</h4>
+                <p>info@techedu.com<br />support@techedu.com</p>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <i class="fas fa-clock"></i>
+              <div>
+                <h4>Jam Operasional</h4>
+                <p>Senin - Jumat: 09:00 - 18:00<br />Sabtu: 09:00 - 13:00</p>
+              </div>
+            </div>
+            <div class="social-links">
+              <a href="#" class="social-link"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-link"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" class="social-link"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+              <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          <div class="contact-form">
+            <h3><i class="fas fa-paper-plane"></i> Kirim Pesan</h3>
+            <form id="contactForm">
+              <div class="form-group">
+                <input type="text" placeholder="Nama Lengkap" required />
+              </div>
+              <div class="form-group">
+                <input type="email" placeholder="Alamat Email" required />
+              </div>
+              <div class="form-group">
+                <input type="text" placeholder="Subjek" />
+              </div>
+              <div class="form-group">
+                <textarea placeholder="Pesan Anda..." required></textarea>
+              </div>
+              <button type="submit" class="btn-submit">
+                Kirim Pesan <i class="fas fa-arrow-right"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+      <div class="container">
+        <div class="map-container">
+          <div id="map"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-about">
+            <a href="#" class="footer-logo">Tech<span>Edu</span></a>
+            <p>
+              Misi kami adalah membuat pendidikan teknologi berkualitas tinggi
+              dapat diakses oleh semua orang, di mana pun mereka berada.
+            </p>
+            <div class="footer-social">
+              <a href="#"><i class="fab fa-facebook"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Pembelajaran</h4>
+            <ul>
+              <li><a href="#">Kursus Coding</a></li>
+              <li><a href="#">Kursus AI</a></li>
+              <li><a href="#">Proyek</a></li>
+              <li><a href="#">Sertifikasi</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Perusahaan</h4>
+            <ul>
+              <li><a href="#">Tentang Kami</a></li>
+              <li><a href="#">Karir</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Pers</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Bantuan</h4>
+            <ul>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Hubungi Kami</a></li>
+              <li><a href="#">Kebijakan Privasi</a></li>
+              <li><a href="#">Syarat & Ketentuan</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            &copy; 2024 TechEdu. Semua hak dilindungi. Memberdayakan generasi
+            masa depan melalui teknologi.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Leaflet JS untuk Peta -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+      // Initialize Map (Koordinat Jakarta Selatan)
+      var map = L.map("map").setView([-6.26567, 106.81155], 15);
+
+      L.tileLayer(
+        "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+        {
+          attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+          subdomains: "abcd",
+          maxZoom: 19,
+        },
+      ).addTo(map);
+
+      // Marker untuk lokasi kantor
+      var marker = L.marker([-6.26567, 106.81155]).addTo(map);
+      marker
+        .bindPopup(
+          "<b>TechEdu Tower</b><br>Jalan Teknologi No. 123<br>Jakarta Selatan",
+        )
+        .openPopup();
+
+      // Contact Form Submit Handler
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          alert(
+            "Terima kasih! Pesan Anda telah terkirim. Kami akan menghubungi Anda segera.",
+          );
+          this.reset();
+        });
+    </script>
+  </body>
+</html>
